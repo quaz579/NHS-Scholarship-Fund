@@ -47,7 +47,7 @@ Based on stakeholder feedback, the following requirements have been confirmed:
 ## Phase 1: Project Setup & Design Foundation
 
 ### Task 1.1: Create Project Structure
-- [ ] Create the following directory structure:
+- [x] Create the following directory structure:
   ```
   /
   ├── index.html
@@ -74,15 +74,15 @@ Based on stakeholder feedback, the following requirements have been confirmed:
       └── (documentation)
   ```
 
-- [ ] Create GitHub Actions workflow for auto-deploy to GitHub Pages
+- [x] Create GitHub Actions workflow for auto-deploy to GitHub Pages
 
 **Testing Checkpoint 1.1:**
-- [ ] Verify all folders exist
-- [ ] Open `index.html` in browser (should load without errors)
-- [ ] GitHub Actions workflow file exists
+- [x] Verify all folders exist
+- [x] Open `index.html` in browser (should load without errors)
+- [x] GitHub Actions workflow file exists
 
 ### Task 1.2: Configure GitHub Pages Deployment
-- [ ] Create `.github/workflows/deploy.yml`:
+- [x] Create `.github/workflows/deploy.yml`:
   ```yaml
   name: Deploy to GitHub Pages
 
@@ -122,48 +122,50 @@ Based on stakeholder feedback, the following requirements have been confirmed:
   
   > **Note**: Action versions may change. Verify latest versions at https://github.com/actions
 
-- [ ] Enable GitHub Pages in repository settings (Settings > Pages > Source: GitHub Actions)
+- [x] Enable GitHub Pages in repository settings (Settings > Pages > Source: GitHub Actions)
 
 **Testing Checkpoint 1.2:**
-- [ ] Push to `main` branch triggers deployment
-- [ ] Site is accessible at `https://<username>.github.io/<repo-name>/`
+- [x] Push to `main` branch triggers deployment
+- [x] Site is accessible at `https://<username>.github.io/<repo-name>/`
 
 ### Task 1.3: Extract School Branding
-- [ ] Research Negaunee official school colors via web search and school website
-- [ ] Visit https://nhs.negauneeschools.org/ to verify colors and extract logo
-- [ ] Download/reference the school logo
-- [ ] Identify primary school colors (hex values) - verify against official Negaunee Miners branding
-- [ ] Identify secondary school colors (hex values)
-- [ ] Document colors in CSS variables for consistent use throughout the site
+- [x] Research Negaunee official school colors via web search and school website
+- [x] Visit https://nhs.negauneeschools.org/ to verify colors and extract logo
+- [x] Download/reference the school logo
+- [x] Identify primary school colors (hex values) - verify against official Negaunee Miners branding
+  - Primary Blue: #00274C
+  - Gold: #FFCB05
+- [x] Identify secondary school colors (hex values)
+- [x] Document colors in CSS variables for consistent use throughout the site
 
 **Testing Checkpoint 1.3:**
-- [ ] Verify logo displays correctly
-- [ ] Verify colors match official Negaunee school branding
+- [x] Verify logo displays correctly
+- [x] Verify colors match official Negaunee school branding
 
 ### Task 1.5: Add Demonstration Banner
-- [ ] Add prominent banner/header indicating this is a POC
-- [ ] Banner text: "DEMONSTRATION ONLY - This site is not yet live"
-- [ ] Style banner to be highly visible (e.g., yellow/orange background)
-- [ ] Banner should appear on all pages
+- [x] Add prominent banner/header indicating this is a POC
+- [x] Banner text: "DEMONSTRATION ONLY - This site is not yet live"
+- [x] Style banner to be highly visible (e.g., yellow/orange background)
+- [x] Banner should appear on all pages
 
 **Testing Checkpoint 1.5:**
-- [ ] Banner is visible on index.html
-- [ ] Banner is visible on thank-you.html
-- [ ] Banner is visible on error.html
+- [x] Banner is visible on index.html
+- [x] Banner is visible on thank-you.html
+- [x] Banner is visible on error.html
 
 ### Task 1.6: Create Base HTML Template
-- [ ] Create semantic HTML5 structure for `index.html`
-- [ ] Include proper meta tags (viewport, description, charset)
-- [ ] Add Bootstrap 5 CSS and JS via CDN
-- [ ] Add accessibility attributes (ARIA labels, alt text)
-- [ ] Link custom CSS and JavaScript files
-- [ ] Use Bootstrap's mobile-first grid system
+- [x] Create semantic HTML5 structure for `index.html`
+- [x] Include proper meta tags (viewport, description, charset)
+- [x] Add Bootstrap 5 CSS and JS via CDN
+- [x] Add accessibility attributes (ARIA labels, alt text)
+- [x] Link custom CSS and JavaScript files
+- [x] Use Bootstrap's mobile-first grid system
 
 **Testing Checkpoint 1.6:**
-- [ ] HTML validates (use W3C validator)
-- [ ] Page is accessible (test with screen reader or accessibility tools)
-- [ ] Page is responsive - test mobile-first at 320px, 576px, 768px, 992px, 1200px widths
-- [ ] Bootstrap components render correctly
+- [x] HTML validates (use W3C validator)
+- [x] Page is accessible (test with screen reader or accessibility tools)
+- [x] Page is responsive - test mobile-first at 320px, 576px, 768px, 992px, 1200px widths
+- [x] Bootstrap components render correctly
 
 ---
 
@@ -172,136 +174,136 @@ Based on stakeholder feedback, the following requirements have been confirmed:
 > **Mobile-First Design**: All components should be designed for mobile screens first, then enhanced for larger screens using Bootstrap's responsive breakpoints (sm, md, lg, xl, xxl).
 
 ### Task 2.1: Create Header Section
-- [ ] Add school logo (responsive sizing)
-- [ ] Add site title: "NHS Scholarship Fund"
-- [ ] Add navigation (if needed) - use Bootstrap navbar with mobile hamburger menu
-- [ ] Style header with school colors
+- [x] Add school logo (responsive sizing)
+- [x] Add site title: "NHS Scholarship Fund"
+- [x] Add navigation (if needed) - use Bootstrap navbar with mobile hamburger menu
+- [x] Style header with school colors
 
 **Testing Checkpoint 2.1:**
-- [ ] Header displays correctly on mobile (320px) first
-- [ ] Header scales appropriately on tablet and desktop
-- [ ] Logo is visible and properly sized at all breakpoints
+- [x] Header displays correctly on mobile (320px) first
+- [x] Header scales appropriately on tablet and desktop
+- [x] Logo is visible and properly sized at all breakpoints
 
 ### Task 2.2: Create Hero/Introduction Section
-- [ ] Add welcoming headline
-- [ ] Add description of the scholarship fund
+- [x] Add welcoming headline
+- [x] Add description of the scholarship fund
   - Note: Scholarships are awarded annually to selected Negaunee High School seniors each spring
-- [ ] Add "Donate Now" call-to-action button
-- [ ] Include brief explanation of why donations matter
-- [ ] Draft placeholder content for all text (to be reviewed/replaced later)
+- [x] Add "Donate Now" call-to-action button
+- [x] Include brief explanation of why donations matter
+- [x] Draft placeholder content for all text (to be reviewed/replaced later)
 
 **Testing Checkpoint 2.2:**
-- [ ] Text is readable and properly sized on mobile first
-- [ ] CTA button is prominent, full-width on mobile, appropriately sized on desktop
-- [ ] Section looks good on mobile (320px) and scales up gracefully
+- [x] Text is readable and properly sized on mobile first
+- [x] CTA button is prominent, full-width on mobile, appropriately sized on desktop
+- [x] Section looks good on mobile (320px) and scales up gracefully
 
 ### Task 2.3: Create Donation Form Section
-- [ ] Add scholarship designation field (text input)
+- [x] Add scholarship designation field (text input)
   - Placeholder: "Enter scholarship name (optional)"
   - Note: Future enhancement will replace with dropdown from JSON
-- [ ] Add donation amount selection:
+- [x] Add donation amount selection:
   - Preset buttons: $25, $50, $100 (use Bootstrap button group, stack vertically on mobile)
   - Custom amount input field
-- [ ] Add optional donor information fields (name, email) - all fields optional to allow anonymous donations
-- [ ] Add payment method selection area
-- [ ] Use Bootstrap form components for consistent mobile-friendly styling
-- [ ] Ensure touch-friendly button/input sizes (min 44px tap targets)
+- [x] Add optional donor information fields (name, email) - all fields optional to allow anonymous donations
+- [x] Add payment method selection area
+- [x] Use Bootstrap form components for consistent mobile-friendly styling
+- [x] Ensure touch-friendly button/input sizes (min 44px tap targets)
 
 **Testing Checkpoint 2.3:**
-- [ ] Form displays correctly on mobile (320px) first
-- [ ] Scholarship text field accepts input
-- [ ] Preset amount buttons work correctly and are easy to tap on mobile
-- [ ] Custom amount input works
-- [ ] Donor fields are optional (form submits without them)
-- [ ] Tab order is logical
-- [ ] Form is keyboard accessible
-- [ ] Form scales appropriately on larger screens
+- [x] Form displays correctly on mobile (320px) first
+- [x] Scholarship text field accepts input
+- [x] Preset amount buttons work correctly and are easy to tap on mobile
+- [x] Custom amount input works
+- [x] Donor fields are optional (form submits without them)
+- [x] Tab order is logical
+- [x] Form is keyboard accessible
+- [x] Form scales appropriately on larger screens
 
 ### Task 2.4: Create Footer Section
-- [ ] Add contact information (placeholder or from school website)
-- [ ] Add link to Negaunee Public Schools website
-- [ ] Add copyright notice
-- [ ] Add privacy policy link (if applicable)
+- [x] Add contact information (placeholder or from school website)
+- [x] Add link to Negaunee Public Schools website
+- [x] Add copyright notice
+- [x] Add privacy policy link (if applicable)
 
 **Testing Checkpoint 2.4:**
-- [ ] Footer displays correctly
-- [ ] All links work properly
+- [x] Footer displays correctly
+- [x] All links work properly
 
 ---
 
 ## Phase 3: Form Validation & JavaScript
 
 ### Task 3.1: Create Form Validation
-- [ ] Validate donation amount (positive number, no minimum)
-- [ ] Display inline error messages
-- [ ] Prevent form submission if validation fails
+- [x] Validate donation amount (positive number, no minimum)
+- [x] Display inline error messages
+- [x] Prevent form submission if validation fails
 
 **Testing Checkpoint 3.1:**
-- [ ] Submit form with empty fields - should show errors
-- [ ] Submit form with invalid email - should show error
-- [ ] Submit form with negative amount - should show error
-- [ ] Submit form with valid data - should proceed
+- [x] Submit form with empty fields - should show errors
+- [x] Submit form with invalid email - should show error
+- [x] Submit form with negative amount - should show error
+- [x] Submit form with valid data - should proceed
 
 ### Task 3.2: Create Amount Selection Logic
-- [ ] Handle preset amount button clicks
-- [ ] Handle custom amount input
-- [ ] Clear preset selection when custom amount entered
-- [ ] Display selected amount prominently
+- [x] Handle preset amount button clicks
+- [x] Handle custom amount input
+- [x] Clear preset selection when custom amount entered
+- [x] Display selected amount prominently
 
 **Testing Checkpoint 3.2:**
-- [ ] Click preset amount - should be highlighted
-- [ ] Enter custom amount - preset should deselect
-- [ ] Amount displays correctly in summary
+- [x] Click preset amount - should be highlighted
+- [x] Enter custom amount - preset should deselect
+- [x] Amount displays correctly in summary
 
 ### Task 3.3: Create Payment Method Selection
-- [ ] Show available payment methods as buttons/tabs
-- [ ] Only show payment form for selected method
-- [ ] Store selected payment method in form state
+- [x] Show available payment methods as buttons/tabs
+- [x] Only show payment form for selected method
+- [x] Store selected payment method in form state
 
 **Testing Checkpoint 3.3:**
-- [ ] Each payment method button works
-- [ ] Correct payment form displays for each method
+- [x] Each payment method button works
+- [x] Correct payment form displays for each method
 
 ---
 
 ## Phase 4: Thank You & Error Pages
 
 ### Task 4.1: Create Thank You Page
-- [ ] Display confirmation message
-- [ ] Show donation amount
-- [ ] Show scholarship name (if provided)
-- [ ] Provide option to make another donation
-- [ ] Include share buttons (optional)
+- [x] Display confirmation message
+- [x] Show donation amount
+- [x] Show scholarship name (if provided)
+- [x] Provide option to make another donation
+- [x] Include share buttons (optional)
 
 **Testing Checkpoint 4.1:**
-- [ ] Page displays correctly
-- [ ] Donation amount displays correctly
-- [ ] Scholarship name displays (if provided)
-- [ ] Return link works
+- [x] Page displays correctly
+- [x] Donation amount displays correctly
+- [x] Scholarship name displays (if provided)
+- [x] Return link works
 
 ### Task 4.2: Create Error Page
-- [ ] Display user-friendly error message
-- [ ] Provide option to try again
-- [ ] Include contact information for support
+- [x] Display user-friendly error message
+- [x] Provide option to try again
+- [x] Include contact information for support
 
 **Testing Checkpoint 4.2:**
-- [ ] Page displays correctly
-- [ ] Try again link works
+- [x] Page displays correctly
+- [x] Try again link works
 
 ---
 
 ## Phase 5: Deployment (GitHub Pages)
 
 ### Task 5.1: Initial Deployment
-- [ ] Verify GitHub Actions workflow is configured (see Task 1.2)
-- [ ] Push to `main` branch to trigger deployment
-- [ ] Verify site is accessible at GitHub Pages URL
+- [x] Verify GitHub Actions workflow is configured (see Task 1.2)
+- [x] Push to `main` branch to trigger deployment
+- [x] Verify site is accessible at GitHub Pages URL
 
 ### Task 5.2: Pre-Payment Launch Checklist
-- [ ] Error pages displaying correctly
-- [ ] All links functional
+- [x] Error pages displaying correctly
+- [x] All links functional
 - [ ] Contact information accurate (replace placeholders with real info)
-- [ ] Site is accessible and functional without payment integrations
+- [x] Site is accessible and functional without payment integrations
 
 ---
 
@@ -313,21 +315,34 @@ Each payment integration has its own detailed document:
 
 ### Task 6.1: PayPal Integration
 See [PAYPAL_INTEGRATION.md](./PAYPAL_INTEGRATION.md)
-- [ ] Use sandbox/placeholder Client ID during development
-- [ ] Document location of Client ID for later replacement
+- [x] Use sandbox/placeholder Client ID during development
+- [x] Document location of Client ID for later replacement
+  - Location: `index.html` line ~267
+  - Placeholder: `YOUR_PAYPAL_CLIENT_ID_HERE`
 
 ### Task 6.2: Venmo Integration
 See [VENMO_INTEGRATION.md](./VENMO_INTEGRATION.md)
-- [ ] Built on PayPal SDK (same account)
+- [x] Built on PayPal SDK (same account)
+  - Uses same Client ID as PayPal
+  - SDK URL includes `enable-funding=venmo`
 
 ### Task 6.3: Google Pay Integration
 See [GOOGLEPAY_INTEGRATION.md](./GOOGLEPAY_INTEGRATION.md)
-- [ ] Use TEST environment during development
-- [ ] Document Merchant ID placeholder location
+- [x] Use TEST environment during development
+- [x] Document Merchant ID placeholder location
+  - Location: `js/payments/googlepay.js` lines 43, 64
+  - Placeholders: `YOUR_GOOGLE_MERCHANT_ID_HERE`, `YOUR_GATEWAY_MERCHANT_ID_HERE`
 
 ### Task 6.4: Apple Pay Integration
 See [APPLEPAY_INTEGRATION.md](./APPLEPAY_INTEGRATION.md)
-- [ ] Document certificate and Merchant ID placeholder locations
+- [x] Document certificate and Merchant ID placeholder locations
+  - Location: `js/payments/applepay.js` line 42
+  - Placeholder: `YOUR_APPLE_MERCHANT_ID_HERE`
+  - Note: Requires server-side merchant validation endpoint
+
+### Task 6.5: Placeholder Credentials Documentation
+- [x] Create comprehensive placeholder credentials guide
+  - Location: `docs/PLACEHOLDER_CREDENTIALS.md`
 
 ---
 
