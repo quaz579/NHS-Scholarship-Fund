@@ -84,6 +84,13 @@ This is a donation website for the Negaunee Public Schools (NHS) Scholarship Fun
 - Test at Bootstrap breakpoints: 320px, 576px, 768px, 992px, 1200px
 - Ensure touch-friendly tap targets (min 44px)
 
+## JavaScript Development Standards
+
+- **Test-Driven Development (TDD)**: Write tests before implementing functionality
+- **100% unit test coverage**: All JavaScript code must have complete test coverage
+- Write small, testable functions
+- Mock external dependencies (payment SDKs, DOM interactions) in tests
+
 ## Out of Scope (Initial Build)
 
 - Recurring donations (Phase 2 feature)
