@@ -134,17 +134,17 @@ Based on stakeholder feedback, the following requirements have been confirmed:
 - [ ] Identify secondary school colors (hex values)
 - [ ] Document colors in CSS variables
 
-**Testing Checkpoint 1.2:**
+**Testing Checkpoint 1.3:**
 - [ ] Verify logo displays correctly
 - [ ] Verify colors match school branding
 
-### Task 1.3: Create Base HTML Template
+### Task 1.4: Create Base HTML Template
 - [ ] Create semantic HTML5 structure for `index.html`
 - [ ] Include proper meta tags (viewport, description, charset)
 - [ ] Add accessibility attributes (ARIA labels, alt text)
 - [ ] Link CSS and JavaScript files
 
-**Testing Checkpoint 1.3:**
+**Testing Checkpoint 1.4:**
 - [ ] HTML validates (use W3C validator)
 - [ ] Page is accessible (test with screen reader or accessibility tools)
 - [ ] Page is responsive (test at 320px, 768px, 1024px widths)
