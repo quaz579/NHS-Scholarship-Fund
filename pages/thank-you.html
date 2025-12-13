@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Thank you for your donation to the NHS Scholarship Fund.">
+  <meta name="theme-color" content="#00274C">
+  <title>Thank You - NHS Scholarship Fund</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <!-- Demonstration Banner -->
+  <div class="demo-banner" role="alert">
+    <i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i>
+    <strong>DEMONSTRATION ONLY</strong> - This site is not yet live. No actual donations will be processed.
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="../index.html">
+          <i class="bi bi-mortarboard-fill" aria-hidden="true"></i>
+          NHS Scholarship Fund
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <section class="thank-you-section" aria-labelledby="thank-you-heading">
+      <div class="container">
+        <div class="thank-you-card">
+          <!-- Success Icon -->
+          <div class="thank-you-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+            </svg>
+          </div>
+
+          <h1 id="thank-you-heading">Thank You for Your Donation!</h1>
+          <p class="lead text-muted">
+            Your generous contribution helps Negaunee High School students achieve their educational dreams.
+          </p>
+
+          <!-- Donation Summary -->
+          <div class="donation-summary">
+            <dl class="row mb-0">
+              <dt class="col-sm-5">Donation Amount:</dt>
+              <dd class="col-sm-7" id="donation-amount">$0.00</dd>
+
+              <dt class="col-sm-5" id="scholarship-label" style="display: none;">Scholarship:</dt>
+              <dd class="col-sm-7" id="scholarship-name" style="display: none;"></dd>
+
+              <dt class="col-sm-5" id="donor-label" style="display: none;">Donor:</dt>
+              <dd class="col-sm-7" id="donor-name" style="display: none;"></dd>
+            </dl>
+          </div>
+
+          <p class="text-muted">
+            A confirmation email will be sent to you shortly. Your receipt from the payment provider
+            can be used for tax purposes.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+            <a href="../index.html" class="btn btn-primary btn-lg">
+              <i class="bi bi-heart-fill" aria-hidden="true"></i>
+              Make Another Donation
+            </a>
+            <a href="https://nhs.negauneeschools.org/" class="btn btn-outline-secondary btn-lg" target="_blank" rel="noopener noreferrer">
+              <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+              Visit NHS Website
+            </a>
+          </div>
+
+          <!-- Share Section -->
+          <div class="mt-5 pt-4 border-top">
+            <p class="text-muted mb-3">Share your support:</p>
+            <div class="d-flex justify-content-center gap-3">
+              <a href="#" class="btn btn-outline-primary" id="share-facebook" aria-label="Share on Facebook">
+                <i class="bi bi-facebook" aria-hidden="true"></i>
+              </a>
+              <a href="#" class="btn btn-outline-info" id="share-twitter" aria-label="Share on Twitter">
+                <i class="bi bi-twitter-x" aria-hidden="true"></i>
+              </a>
+              <a href="#" class="btn btn-outline-success" id="share-email" aria-label="Share via Email">
+                <i class="bi bi-envelope-fill" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h4 class="footer-title">NHS Scholarship Fund</h4>
+          <p class="footer-text">
+            Supporting Negaunee High School seniors in achieving their educational goals since [year].
+          </p>
+        </div>
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h4 class="footer-title">Contact</h4>
+          <p class="footer-text">
+            Negaunee Public Schools<br>
+            101 S. Pioneer Avenue<br>
+            Negaunee, MI 49866<br>
+            <a href="tel:+19064757861">(906) 475-7861</a>
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h4 class="footer-title">Links</h4>
+          <ul class="list-unstyled footer-text">
+            <li>
+              <a href="https://nhs.negauneeschools.org/" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                Negaunee High School
+              </a>
+            </li>
+            <li>
+              <a href="https://www.negauneeschools.org/" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                Negaunee Public Schools
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="mb-0">
+          &copy; <span id="current-year"></span> NHS Scholarship Fund. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+  <!-- Page-specific JavaScript -->
+  <script>
+    (function() {
+      'use strict';
+
+      // Set current year
+      const yearSpan = document.getElementById('current-year');
+      if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
+
+      // Parse URL parameters
+      const params = new URLSearchParams(window.location.search);
+      const amount = params.get('amount');
+      const scholarship = params.get('scholarship');
+      const donor = params.get('donor');
+
+      // Display donation amount
+      const amountEl = document.getElementById('donation-amount');
+      if (amountEl && amount) {
+        const numAmount = parseFloat(amount);
+        amountEl.textContent = '$' + numAmount.toFixed(2);
+      }
+
+      // Display scholarship name if provided
+      if (scholarship) {
+        const scholarshipLabel = document.getElementById('scholarship-label');
+        const scholarshipName = document.getElementById('scholarship-name');
+        if (scholarshipLabel && scholarshipName) {
+          scholarshipLabel.style.display = '';
+          scholarshipName.style.display = '';
+          scholarshipName.textContent = scholarship;
+        }
+      }
+
+      // Display donor name if provided
+      if (donor) {
+        const donorLabel = document.getElementById('donor-label');
+        const donorName = document.getElementById('donor-name');
+        if (donorLabel && donorName) {
+          donorLabel.style.display = '';
+          donorName.style.display = '';
+          donorName.textContent = donor;
+        }
+      }
+
+      // Set up share buttons
+      const pageUrl = window.location.origin + '/index.html';
+      const shareText = 'I just donated to the NHS Scholarship Fund to support Negaunee High School students!';
+
+      // Facebook share
+      const fbBtn = document.getElementById('share-facebook');
+      if (fbBtn) {
+        fbBtn.href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(pageUrl);
+        fbBtn.target = '_blank';
+        fbBtn.rel = 'noopener noreferrer';
+      }
+
+      // Twitter share
+      const twBtn = document.getElementById('share-twitter');
+      if (twBtn) {
+        twBtn.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText) + '&url=' + encodeURIComponent(pageUrl);
+        twBtn.target = '_blank';
+        twBtn.rel = 'noopener noreferrer';
+      }
+
+      // Email share
+      const emBtn = document.getElementById('share-email');
+      if (emBtn) {
+        emBtn.href = 'mailto:?subject=' + encodeURIComponent('Support the NHS Scholarship Fund') + '&body=' + encodeURIComponent(shareText + '\n\n' + pageUrl);
+      }
+    })();
+  </script>
+</body>
+</html>

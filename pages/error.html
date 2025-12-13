@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An error occurred while processing your donation.">
+  <meta name="theme-color" content="#00274C">
+  <title>Error - NHS Scholarship Fund</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <!-- Demonstration Banner -->
+  <div class="demo-banner" role="alert">
+    <i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i>
+    <strong>DEMONSTRATION ONLY</strong> - This site is not yet live. No actual donations will be processed.
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="../index.html">
+          <i class="bi bi-mortarboard-fill" aria-hidden="true"></i>
+          NHS Scholarship Fund
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <section class="error-section" aria-labelledby="error-heading">
+      <div class="container">
+        <div class="error-card">
+          <!-- Error Icon -->
+          <div class="error-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+          </div>
+
+          <h1 id="error-heading">Something Went Wrong</h1>
+          <p class="lead text-muted" id="error-message">
+            We encountered an error while processing your request. Your payment was not completed.
+          </p>
+
+          <!-- Error Details -->
+          <div class="alert alert-warning" role="alert" id="error-details" style="display: none;">
+            <i class="bi bi-info-circle-fill" aria-hidden="true"></i>
+            <span id="error-reason"></span>
+          </div>
+
+          <p class="text-muted">
+            Don't worry - no charges have been made to your account. Please try again or contact us if the problem persists.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+            <a href="../index.html" class="btn btn-primary btn-lg">
+              <i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>
+              Try Again
+            </a>
+            <a href="mailto:scholarships@negauneeschools.org" class="btn btn-outline-secondary btn-lg">
+              <i class="bi bi-envelope-fill" aria-hidden="true"></i>
+              Contact Support
+            </a>
+          </div>
+
+          <!-- Help Section -->
+          <div class="mt-5 pt-4 border-top">
+            <h2 class="h5 mb-3">Need Help?</h2>
+            <p class="text-muted mb-2">If you continue to experience issues, please contact us:</p>
+            <ul class="list-unstyled text-muted">
+              <li><i class="bi bi-telephone" aria-hidden="true"></i> <a href="tel:+19064757861">(906) 475-7861</a></li>
+              <li><i class="bi bi-envelope" aria-hidden="true"></i> <a href="mailto:scholarships@negauneeschools.org">scholarships@negauneeschools.org</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h4 class="footer-title">NHS Scholarship Fund</h4>
+          <p class="footer-text">
+            Supporting Negaunee High School seniors in achieving their educational goals since [year].
+          </p>
+        </div>
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h4 class="footer-title">Contact</h4>
+          <p class="footer-text">
+            Negaunee Public Schools<br>
+            101 S. Pioneer Avenue<br>
+            Negaunee, MI 49866<br>
+            <a href="tel:+19064757861">(906) 475-7861</a>
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h4 class="footer-title">Links</h4>
+          <ul class="list-unstyled footer-text">
+            <li>
+              <a href="https://nhs.negauneeschools.org/" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                Negaunee High School
+              </a>
+            </li>
+            <li>
+              <a href="https://www.negauneeschools.org/" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                Negaunee Public Schools
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="mb-0">
+          &copy; <span id="current-year"></span> NHS Scholarship Fund. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+  <!-- Page-specific JavaScript -->
+  <script>
+    (function() {
+      'use strict';
+
+      // Set current year
+      const yearSpan = document.getElementById('current-year');
+      if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
+
+      // Parse URL parameters for error reason
+      const params = new URLSearchParams(window.location.search);
+      const reason = params.get('reason');
+
+      // Error messages map
+      const errorMessages = {
+        'payment_failed': 'The payment could not be processed. Please check your payment details and try again.',
+        'payment_cancelled': 'The payment was cancelled. You can try again whenever you\'re ready.',
+        'validation_error': 'There was an issue with the information provided. Please check your details and try again.',
+        'network_error': 'A network error occurred. Please check your internet connection and try again.',
+        'timeout': 'The request timed out. Please try again.',
+        'unknown': 'An unexpected error occurred. Please try again later.'
+      };
+
+      // Display error details if reason provided
+      if (reason && errorMessages[reason]) {
+        const detailsEl = document.getElementById('error-details');
+        const reasonEl = document.getElementById('error-reason');
+        if (detailsEl && reasonEl) {
+          reasonEl.textContent = errorMessages[reason];
+          detailsEl.style.display = 'block';
+        }
+      }
+    })();
+  </script>
+</body>
+</html>
