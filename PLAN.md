@@ -9,13 +9,14 @@ This document outlines the plan to build a donation website for the Negaunee Pub
 *(Future enhancement: May pull from a JSON document to provide a dropdown list of available scholarships)*
 
 ### Technology Stack
-- **Frontend**: Plain HTML5, CSS3, JavaScript (ES6+)
-- **No Frameworks**: Pure vanilla implementation
+- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+- **CSS Framework**: Bootstrap 5 (via CDN)
+- **Design Approach**: Mobile-first responsive design
 - **Payment Integrations**: PayPal, Venmo, Google Pay, Apple Pay
 
 ### Design Reference
 - **School Website**: https://nhs.negauneeschools.org/
-- **School Colors**: To be extracted from school website
+- **School Colors**: To be researched via web search and extracted/verified from school website (official Negaunee Miners colors)
 - **Logo**: To be obtained from school website
 
 > ⚠️ **Important**: Before using the school's logo and colors, obtain proper permission from Negaunee Public Schools administration. School branding may be protected and require authorization for use on third-party donation sites.
@@ -128,70 +129,93 @@ Based on stakeholder feedback, the following requirements have been confirmed:
 - [ ] Site is accessible at `https://<username>.github.io/<repo-name>/`
 
 ### Task 1.3: Extract School Branding
-- [ ] Visit https://nhs.negauneeschools.org/
+- [ ] Research Negaunee official school colors via web search and school website
+- [ ] Visit https://nhs.negauneeschools.org/ to verify colors and extract logo
 - [ ] Download/reference the school logo
-- [ ] Identify primary school colors (hex values)
+- [ ] Identify primary school colors (hex values) - verify against official Negaunee Miners branding
 - [ ] Identify secondary school colors (hex values)
-- [ ] Document colors in CSS variables
+- [ ] Document colors in CSS variables for consistent use throughout the site
 
 **Testing Checkpoint 1.3:**
 - [ ] Verify logo displays correctly
-- [ ] Verify colors match school branding
+- [ ] Verify colors match official Negaunee school branding
 
-### Task 1.4: Create Base HTML Template
+### Task 1.5: Add Demonstration Banner
+- [ ] Add prominent banner/header indicating this is a POC
+- [ ] Banner text: "DEMONSTRATION ONLY - This site is not yet live"
+- [ ] Style banner to be highly visible (e.g., yellow/orange background)
+- [ ] Banner should appear on all pages
+
+**Testing Checkpoint 1.5:**
+- [ ] Banner is visible on index.html
+- [ ] Banner is visible on thank-you.html
+- [ ] Banner is visible on error.html
+
+### Task 1.6: Create Base HTML Template
 - [ ] Create semantic HTML5 structure for `index.html`
 - [ ] Include proper meta tags (viewport, description, charset)
+- [ ] Add Bootstrap 5 CSS and JS via CDN
 - [ ] Add accessibility attributes (ARIA labels, alt text)
-- [ ] Link CSS and JavaScript files
+- [ ] Link custom CSS and JavaScript files
+- [ ] Use Bootstrap's mobile-first grid system
 
-**Testing Checkpoint 1.4:**
+**Testing Checkpoint 1.6:**
 - [ ] HTML validates (use W3C validator)
 - [ ] Page is accessible (test with screen reader or accessibility tools)
-- [ ] Page is responsive (test at 320px, 768px, 1024px widths)
+- [ ] Page is responsive - test mobile-first at 320px, 576px, 768px, 992px, 1200px widths
+- [ ] Bootstrap components render correctly
 
 ---
 
 ## Phase 2: Core Website Layout
 
+> **Mobile-First Design**: All components should be designed for mobile screens first, then enhanced for larger screens using Bootstrap's responsive breakpoints (sm, md, lg, xl, xxl).
+
 ### Task 2.1: Create Header Section
-- [ ] Add school logo
+- [ ] Add school logo (responsive sizing)
 - [ ] Add site title: "NHS Scholarship Fund"
-- [ ] Add navigation (if needed)
+- [ ] Add navigation (if needed) - use Bootstrap navbar with mobile hamburger menu
 - [ ] Style header with school colors
 
 **Testing Checkpoint 2.1:**
-- [ ] Header displays correctly at all screen sizes
-- [ ] Logo is visible and properly sized
+- [ ] Header displays correctly on mobile (320px) first
+- [ ] Header scales appropriately on tablet and desktop
+- [ ] Logo is visible and properly sized at all breakpoints
 
 ### Task 2.2: Create Hero/Introduction Section
 - [ ] Add welcoming headline
 - [ ] Add description of the scholarship fund
+  - Note: Scholarships are awarded annually to selected Negaunee High School seniors each spring
 - [ ] Add "Donate Now" call-to-action button
 - [ ] Include brief explanation of why donations matter
+- [ ] Draft placeholder content for all text (to be reviewed/replaced later)
 
 **Testing Checkpoint 2.2:**
-- [ ] Text is readable and properly sized
-- [ ] CTA button is prominent and clickable
-- [ ] Section looks good on mobile
+- [ ] Text is readable and properly sized on mobile first
+- [ ] CTA button is prominent, full-width on mobile, appropriately sized on desktop
+- [ ] Section looks good on mobile (320px) and scales up gracefully
 
 ### Task 2.3: Create Donation Form Section
 - [ ] Add scholarship designation field (text input)
   - Placeholder: "Enter scholarship name (optional)"
   - Note: Future enhancement will replace with dropdown from JSON
 - [ ] Add donation amount selection:
-  - Preset buttons: $25, $50, $100
+  - Preset buttons: $25, $50, $100 (use Bootstrap button group, stack vertically on mobile)
   - Custom amount input field
-- [ ] Add minimal donor information (only what payment providers require)
+- [ ] Add optional donor information fields (name, email) - all fields optional to allow anonymous donations
 - [ ] Add payment method selection area
-- [ ] Style form for usability
+- [ ] Use Bootstrap form components for consistent mobile-friendly styling
+- [ ] Ensure touch-friendly button/input sizes (min 44px tap targets)
 
 **Testing Checkpoint 2.3:**
+- [ ] Form displays correctly on mobile (320px) first
 - [ ] Scholarship text field accepts input
-- [ ] Preset amount buttons work correctly
+- [ ] Preset amount buttons work correctly and are easy to tap on mobile
 - [ ] Custom amount input works
+- [ ] Donor fields are optional (form submits without them)
 - [ ] Tab order is logical
 - [ ] Form is keyboard accessible
-- [ ] Form looks good on mobile devices
+- [ ] Form scales appropriately on larger screens
 
 ### Task 2.4: Create Footer Section
 - [ ] Add contact information (placeholder or from school website)
@@ -245,11 +269,14 @@ Based on stakeholder feedback, the following requirements have been confirmed:
 ### Task 4.1: Create Thank You Page
 - [ ] Display confirmation message
 - [ ] Show donation amount
+- [ ] Show scholarship name (if provided)
 - [ ] Provide option to make another donation
 - [ ] Include share buttons (optional)
 
 **Testing Checkpoint 4.1:**
 - [ ] Page displays correctly
+- [ ] Donation amount displays correctly
+- [ ] Scholarship name displays (if provided)
 - [ ] Return link works
 
 ### Task 4.2: Create Error Page
@@ -263,76 +290,84 @@ Based on stakeholder feedback, the following requirements have been confirmed:
 
 ---
 
-## Phase 5: Payment Integrations
+## Phase 5: Deployment (GitHub Pages)
+
+### Task 5.1: Initial Deployment
+- [ ] Verify GitHub Actions workflow is configured (see Task 1.2)
+- [ ] Push to `main` branch to trigger deployment
+- [ ] Verify site is accessible at GitHub Pages URL
+
+### Task 5.2: Pre-Payment Launch Checklist
+- [ ] Error pages displaying correctly
+- [ ] All links functional
+- [ ] Contact information accurate (replace placeholders with real info)
+- [ ] Site is accessible and functional without payment integrations
+
+---
+
+## Phase 6: Payment Integrations
 
 > ⚠️ **Note**: Payment merchant accounts will be set up by school administration. Use placeholder credentials during development and document where they need to be replaced.
 
 Each payment integration has its own detailed document:
 
-### Task 5.1: PayPal Integration
+### Task 6.1: PayPal Integration
 See [PAYPAL_INTEGRATION.md](./PAYPAL_INTEGRATION.md)
 - [ ] Use sandbox/placeholder Client ID during development
 - [ ] Document location of Client ID for later replacement
 
-### Task 5.2: Venmo Integration
+### Task 6.2: Venmo Integration
 See [VENMO_INTEGRATION.md](./VENMO_INTEGRATION.md)
 - [ ] Built on PayPal SDK (same account)
 
-### Task 5.3: Google Pay Integration
+### Task 6.3: Google Pay Integration
 See [GOOGLEPAY_INTEGRATION.md](./GOOGLEPAY_INTEGRATION.md)
 - [ ] Use TEST environment during development
 - [ ] Document Merchant ID placeholder location
 
-### Task 5.4: Apple Pay Integration
+### Task 6.4: Apple Pay Integration
 See [APPLEPAY_INTEGRATION.md](./APPLEPAY_INTEGRATION.md)
 - [ ] Document certificate and Merchant ID placeholder locations
 
 ---
 
-## Phase 6: Testing & Quality Assurance
+## Phase 7: Testing & Quality Assurance
 
-### Task 6.1: Cross-Browser Testing
+### Task 7.1: Cross-Browser Testing
 - [ ] Test in Chrome
 - [ ] Test in Firefox
 - [ ] Test in Safari
 - [ ] Test in Edge
 - [ ] Test in mobile browsers (iOS Safari, Chrome Android)
 
-### Task 6.2: Accessibility Testing
+### Task 7.2: Accessibility Testing
 - [ ] Run automated accessibility scan (e.g., axe, WAVE)
 - [ ] Test keyboard navigation
 - [ ] Test screen reader compatibility
 - [ ] Verify color contrast ratios
 
-### Task 6.3: Payment Testing
+### Task 7.3: Payment Testing
 - [ ] Test PayPal sandbox transactions
 - [ ] Test Venmo sandbox transactions
 - [ ] Test Google Pay test mode
 - [ ] Test Apple Pay sandbox
 - [ ] Test error handling for failed payments
 
-### Task 6.4: Performance Testing
+### Task 7.4: Performance Testing
 - [ ] Test page load time
 - [ ] Optimize images
 - [ ] Minimize CSS/JS files for production
 
 ---
 
-## Phase 7: Deployment (GitHub Pages)
+## Phase 8: Production Launch
 
-### Task 7.1: Prepare for Production
+### Task 8.1: Prepare for Production
 - [ ] Switch all payment integrations from sandbox to production
 - [ ] Update API keys/credentials (provided by school)
 - [ ] Set up proper error logging
-- [ ] Configure analytics (if desired)
 
-### Task 7.2: Deploy to GitHub Pages
-- [ ] Verify GitHub Actions workflow is configured (see Task 1.2)
-- [ ] Push to `main` branch to trigger deployment
-- [ ] Configure custom domain (if applicable)
-- [ ] Verify site is accessible at GitHub Pages URL
-
-### Task 7.3: Launch Checklist
+### Task 8.2: Final Launch Checklist
 - [ ] All payment methods working with production credentials
 - [ ] Error pages displaying correctly
 - [ ] All links functional
