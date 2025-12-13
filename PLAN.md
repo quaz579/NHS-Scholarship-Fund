@@ -5,8 +5,8 @@
 This document outlines the plan to build a donation website for the Negaunee Public Schools (NHS) Scholarship Fund. The website will allow donors to contribute to scholarships using modern payment methods instead of mailing checks.
 
 ### Scholarship Focus
-**Selected Scholarship: NHS General Scholarship Fund**
-*(Note: A specific scholarship name should be confirmed with the school administration)*
+**Scholarship Selection**: Text input field allowing donors to specify which scholarship they wish to support
+*(Future enhancement: May pull from a JSON document to provide a dropdown list of available scholarships)*
 
 ### Technology Stack
 - **Frontend**: Plain HTML5, CSS3, JavaScript (ES6+)
@@ -22,38 +22,24 @@ This document outlines the plan to build a donation website for the Negaunee Pub
 
 ---
 
-## Clarifying Questions
+## Requirements (Confirmed)
 
-Before proceeding with implementation, the following questions should be answered:
+Based on stakeholder feedback, the following requirements have been confirmed:
 
-1. **Scholarship Selection**: Which specific scholarship(s) should donations go to? Or should there be a dropdown to select from multiple scholarships?
-
-2. **Donation Amounts**: Should there be preset donation amounts (e.g., $25, $50, $100) or only custom amounts?
-
-3. **Donor Information**: What information should be collected from donors?
-   - Name (required?)
-   - Email (for receipt?)
-   - Phone number?
-   - Mailing address?
-   - Option for anonymous donations?
-
-4. **Tax Receipts**: Should the system send automatic tax receipt emails?
-
-5. **Recurring Donations**: Should the site support recurring monthly/yearly donations?
-
-6. **Payment Account Details**: Who will set up the PayPal/Venmo/Google Pay/Apple Pay merchant accounts?
-
-7. **Hosting**: Where will this website be hosted? (GitHub Pages, school server, etc.)
-
-8. **SSL Certificate**: How will HTTPS be configured for secure payment processing?
-
-9. **Thank You Page**: Should there be a specific thank you message or redirect after donation?
-
-10. **Minimum Donation Amount**: Is there a minimum donation amount?
-
-11. **Administrative Dashboard**: Is there a need for an admin view to track donations?
-
-12. **Contact Information**: What contact info should be displayed for donation questions?
+| Requirement | Decision |
+|-------------|----------|
+| **Scholarship Selection** | Text box for now (future: may pull from JSON document) |
+| **Donation Amounts** | Preset: $25, $50, $100 + Custom amount |
+| **Donor Information** | Minimal required fields only |
+| **Tax Receipts** | Handled by payment providers (PayPal, etc.) - not in initial build |
+| **Recurring Donations** | **Phase 2** - not in initial build |
+| **Payment Accounts** | Placeholders for now - school will set up accounts later |
+| **Hosting** | GitHub Pages with auto-deploy from `main` branch |
+| **SSL Certificate** | Handled by payment providers (external payment flows) |
+| **Thank You Page** | Yes - create a dedicated thank you page |
+| **Minimum Donation** | No minimum |
+| **Admin Dashboard** | Not needed |
+| **Contact Information** | Use placeholder or extract from school website |
 
 ---
 
@@ -80,15 +66,68 @@ Before proceeding with implementation, the following questions should be answere
   ├── pages/
   │   ├── thank-you.html
   │   └── error.html
+  ├── .github/
+  │   └── workflows/
+  │       └── deploy.yml
   └── docs/
       └── (documentation)
   ```
 
+- [ ] Create GitHub Actions workflow for auto-deploy to GitHub Pages
+
 **Testing Checkpoint 1.1:**
 - [ ] Verify all folders exist
 - [ ] Open `index.html` in browser (should load without errors)
+- [ ] GitHub Actions workflow file exists
 
-### Task 1.2: Extract School Branding
+### Task 1.2: Configure GitHub Pages Deployment
+- [ ] Create `.github/workflows/deploy.yml`:
+  ```yaml
+  name: Deploy to GitHub Pages
+
+  on:
+    push:
+      branches:
+        - main
+
+  permissions:
+    contents: read
+    pages: write
+    id-token: write
+
+  concurrency:
+    group: "pages"
+    cancel-in-progress: false
+
+  jobs:
+    deploy:
+      environment:
+        name: github-pages
+        url: ${{ steps.deployment.outputs.page_url }}
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+        - name: Setup Pages
+          uses: actions/configure-pages@v5
+        - name: Upload artifact
+          uses: actions/upload-pages-artifact@v3
+          with:
+            path: '.'
+        - name: Deploy to GitHub Pages
+          id: deployment
+          uses: actions/deploy-pages@v4
+  ```
+  
+  > **Note**: Action versions may change. Verify latest versions at https://github.com/actions
+
+- [ ] Enable GitHub Pages in repository settings (Settings > Pages > Source: GitHub Actions)
+
+**Testing Checkpoint 1.2:**
+- [ ] Push to `main` branch triggers deployment
+- [ ] Site is accessible at `https://<username>.github.io/<repo-name>/`
+
+### Task 1.3: Extract School Branding
 - [ ] Visit https://nhs.negauneeschools.org/
 - [ ] Download/reference the school logo
 - [ ] Identify primary school colors (hex values)
@@ -136,24 +175,26 @@ Before proceeding with implementation, the following questions should be answere
 - [ ] Section looks good on mobile
 
 ### Task 2.3: Create Donation Form Section
-- [ ] Add donation amount selection (preset + custom)
-- [ ] Add donor information fields:
-  - Full Name
-  - Email Address
-  - (Optional) Phone Number
-  - (Optional) Make donation anonymous checkbox
-- [ ] Add donation frequency option (one-time vs recurring)
+- [ ] Add scholarship designation field (text input)
+  - Placeholder: "Enter scholarship name (optional)"
+  - Note: Future enhancement will replace with dropdown from JSON
+- [ ] Add donation amount selection:
+  - Preset buttons: $25, $50, $100
+  - Custom amount input field
+- [ ] Add minimal donor information (only what payment providers require)
 - [ ] Add payment method selection area
 - [ ] Style form for usability
 
 **Testing Checkpoint 2.3:**
-- [ ] Form displays all fields correctly
+- [ ] Scholarship text field accepts input
+- [ ] Preset amount buttons work correctly
+- [ ] Custom amount input works
 - [ ] Tab order is logical
 - [ ] Form is keyboard accessible
 - [ ] Form looks good on mobile devices
 
 ### Task 2.4: Create Footer Section
-- [ ] Add contact information
+- [ ] Add contact information (placeholder or from school website)
 - [ ] Add link to Negaunee Public Schools website
 - [ ] Add copyright notice
 - [ ] Add privacy policy link (if applicable)
@@ -167,9 +208,7 @@ Before proceeding with implementation, the following questions should be answere
 ## Phase 3: Form Validation & JavaScript
 
 ### Task 3.1: Create Form Validation
-- [ ] Validate required fields (name, email)
-- [ ] Validate email format
-- [ ] Validate donation amount (positive number, minimum amount)
+- [ ] Validate donation amount (positive number, no minimum)
 - [ ] Display inline error messages
 - [ ] Prevent form submission if validation fails
 
@@ -226,19 +265,27 @@ Before proceeding with implementation, the following questions should be answere
 
 ## Phase 5: Payment Integrations
 
+> ⚠️ **Note**: Payment merchant accounts will be set up by school administration. Use placeholder credentials during development and document where they need to be replaced.
+
 Each payment integration has its own detailed document:
 
 ### Task 5.1: PayPal Integration
 See [PAYPAL_INTEGRATION.md](./PAYPAL_INTEGRATION.md)
+- [ ] Use sandbox/placeholder Client ID during development
+- [ ] Document location of Client ID for later replacement
 
 ### Task 5.2: Venmo Integration
 See [VENMO_INTEGRATION.md](./VENMO_INTEGRATION.md)
+- [ ] Built on PayPal SDK (same account)
 
 ### Task 5.3: Google Pay Integration
 See [GOOGLEPAY_INTEGRATION.md](./GOOGLEPAY_INTEGRATION.md)
+- [ ] Use TEST environment during development
+- [ ] Document Merchant ID placeholder location
 
 ### Task 5.4: Apple Pay Integration
 See [APPLEPAY_INTEGRATION.md](./APPLEPAY_INTEGRATION.md)
+- [ ] Document certificate and Merchant ID placeholder locations
 
 ---
 
@@ -271,26 +318,25 @@ See [APPLEPAY_INTEGRATION.md](./APPLEPAY_INTEGRATION.md)
 
 ---
 
-## Phase 7: Deployment
+## Phase 7: Deployment (GitHub Pages)
 
 ### Task 7.1: Prepare for Production
 - [ ] Switch all payment integrations from sandbox to production
-- [ ] Update API keys/credentials
+- [ ] Update API keys/credentials (provided by school)
 - [ ] Set up proper error logging
 - [ ] Configure analytics (if desired)
 
-### Task 7.2: Deploy Website
-- [ ] Choose hosting platform
+### Task 7.2: Deploy to GitHub Pages
+- [ ] Verify GitHub Actions workflow is configured (see Task 1.2)
+- [ ] Push to `main` branch to trigger deployment
 - [ ] Configure custom domain (if applicable)
-- [ ] Set up SSL certificate
-- [ ] Test live payment processing
+- [ ] Verify site is accessible at GitHub Pages URL
 
 ### Task 7.3: Launch Checklist
-- [ ] All payment methods working
-- [ ] Thank you emails sending (if implemented)
+- [ ] All payment methods working with production credentials
 - [ ] Error pages displaying correctly
 - [ ] All links functional
-- [ ] Contact information accurate
+- [ ] Contact information accurate (replace placeholders with real info)
 
 ---
 
@@ -309,6 +355,7 @@ See [APPLEPAY_INTEGRATION.md](./APPLEPAY_INTEGRATION.md)
 | `js/payments/applepay.js` | Apple Pay integration |
 | `pages/thank-you.html` | Post-donation confirmation |
 | `pages/error.html` | Error handling page |
+| `.github/workflows/deploy.yml` | GitHub Pages auto-deployment |
 
 ---
 
@@ -325,3 +372,27 @@ See [APPLEPAY_INTEGRATION.md](./APPLEPAY_INTEGRATION.md)
 5. **Keep Credentials Secure**: Never commit API keys or credentials to the repository. Use environment variables or a separate config file that's in `.gitignore`.
 
 6. **Document Changes**: Update this plan with any deviations or discoveries.
+
+7. **Placeholders**: Use clear placeholder values (e.g., `YOUR_CLIENT_ID_HERE`) and document their locations for the school to replace later.
+
+---
+
+## Future Phase: Recurring Donations (Phase 2)
+
+> 📌 **Note**: This feature is planned for a future release, not the initial build.
+
+### Overview
+Enable donors to set up recurring monthly or yearly donations.
+
+### Planned Tasks
+- [ ] Add recurring donation toggle to form
+- [ ] Add frequency selection (monthly/yearly)
+- [ ] Integrate PayPal subscription API
+- [ ] Integrate Venmo recurring (if available)
+- [ ] Create subscription management page
+- [ ] Handle subscription cancellation
+
+### Technical Considerations
+- PayPal Subscriptions API required
+- May need server-side component for subscription management
+- Consider webhook handling for subscription events
