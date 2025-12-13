@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Support Negaunee High School students by donating to the NHS Scholarship Fund. Your contribution helps seniors achieve their educational goals.">
+  <meta name="theme-color" content="#00274C">
+  <title>NHS Scholarship Fund - Support Negaunee Students</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- Demonstration Banner -->
+  <div class="demo-banner" role="alert">
+    <i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i>
+    <strong>DEMONSTRATION ONLY</strong> - This site is not yet live. No actual donations will be processed.
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <i class="bi bi-mortarboard-fill" aria-hidden="true"></i>
+          NHS Scholarship Fund
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" aria-labelledby="hero-heading">
+      <div class="container">
+        <h1 id="hero-heading">Support Negaunee Students</h1>
+        <p class="lead">
+          Your generous donation to the NHS Scholarship Fund helps Negaunee High School seniors
+          achieve their educational dreams. Every contribution makes a difference in a student's future.
+        </p>
+        <a href="#donate" class="btn btn-donate">
+          <i class="bi bi-heart-fill" aria-hidden="true"></i>
+          Donate Now
+        </a>
+      </div>
+    </section>
+
+    <!-- Donation Form Section -->
+    <section id="donate" class="donation-section" aria-labelledby="donate-heading">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-xl-7">
+            <div class="donation-card">
+              <h2 id="donate-heading">Make a Donation</h2>
+              <p class="section-subtitle">
+                Scholarships are awarded annually to selected Negaunee High School seniors each spring.
+              </p>
+
+              <form id="donation-form" novalidate>
+                <!-- Scholarship Selection -->
+                <div class="mb-4">
+                  <label for="scholarship-name" class="form-label">
+                    Scholarship Name <span class="text-muted">(optional)</span>
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="scholarship-name"
+                    name="scholarshipName"
+                    placeholder="Enter scholarship name to support"
+                    aria-describedby="scholarship-help"
+                  >
+                  <div id="scholarship-help" class="form-text">
+                    Leave blank for general scholarship fund contribution.
+                  </div>
+                </div>
+
+                <!-- Donation Amount -->
+                <div class="amount-selection mb-4">
+                  <label class="amount-label">Donation Amount</label>
+                  <div class="amount-buttons" role="group" aria-label="Select donation amount">
+                    <button type="button" class="amount-btn" data-amount="25">$25</button>
+                    <button type="button" class="amount-btn" data-amount="50">$50</button>
+                    <button type="button" class="amount-btn" data-amount="100">$100</button>
+                  </div>
+                  <div class="custom-amount-wrapper">
+                    <label for="custom-amount" class="visually-hidden">Custom donation amount</label>
+                    <div class="input-group">
+                      <span class="input-group-text">$</span>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="custom-amount"
+                        name="customAmount"
+                        placeholder="Other amount"
+                        min="0.01"
+                        step="0.01"
+                        aria-describedby="amount-error"
+                      >
+                    </div>
+                    <div id="amount-error" class="invalid-feedback">
+                      Please enter a valid donation amount.
+                    </div>
+                  </div>
+                  <input type="hidden" id="selected-amount" name="amount" value="">
+                </div>
+
+                <!-- Donor Information (Optional) -->
+                <fieldset class="mb-4">
+                  <legend class="form-label h6">
+                    Donor Information <span class="text-muted">(optional - leave blank for anonymous donation)</span>
+                  </legend>
+                  <div class="donor-info-row">
+                    <div class="mb-3 mb-md-0">
+                      <label for="donor-name" class="form-label">Name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="donor-name"
+                        name="donorName"
+                        placeholder="Your name"
+                        autocomplete="name"
+                      >
+                    </div>
+                    <div>
+                      <label for="donor-email" class="form-label">Email</label>
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="donor-email"
+                        name="donorEmail"
+                        placeholder="your@email.com"
+                        autocomplete="email"
+                        aria-describedby="email-error"
+                      >
+                      <div id="email-error" class="invalid-feedback">
+                        Please enter a valid email address.
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+
+                <!-- Payment Methods -->
+                <div class="payment-methods">
+                  <h3>Select Payment Method</h3>
+                  <div class="payment-options" role="group" aria-label="Select payment method">
+                    <button type="button" class="payment-btn" data-method="paypal" aria-pressed="false">
+                      <i class="bi bi-paypal" aria-hidden="true"></i>
+                      PayPal
+                    </button>
+                    <button type="button" class="payment-btn" data-method="venmo" aria-pressed="false">
+                      <i class="bi bi-phone" aria-hidden="true"></i>
+                      Venmo
+                    </button>
+                    <button type="button" class="payment-btn" data-method="googlepay" aria-pressed="false">
+                      <i class="bi bi-google" aria-hidden="true"></i>
+                      Google Pay
+                    </button>
+                    <button type="button" class="payment-btn" data-method="applepay" aria-pressed="false">
+                      <i class="bi bi-apple" aria-hidden="true"></i>
+                      Apple Pay
+                    </button>
+                  </div>
+                  <input type="hidden" id="selected-payment" name="paymentMethod" value="">
+                  <div id="payment-error" class="invalid-feedback d-block" style="display: none !important;">
+                    Please select a payment method.
+                  </div>
+
+                  <!-- Payment Container (for SDK buttons) -->
+                  <div id="payment-container" class="payment-container" style="display: none;">
+                    <p class="text-center text-muted mb-0">
+                      <i class="bi bi-info-circle" aria-hidden="true"></i>
+                      Payment processing will appear here once configured.
+                    </p>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h4 class="footer-title">NHS Scholarship Fund</h4>
+          <p class="footer-text">
+            Supporting Negaunee High School seniors in achieving their educational goals since [year].
+          </p>
+        </div>
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h4 class="footer-title">Contact</h4>
+          <p class="footer-text">
+            Negaunee Public Schools<br>
+            101 S. Pioneer Avenue<br>
+            Negaunee, MI 49866<br>
+            <a href="tel:+19064757861">(906) 475-7861</a>
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h4 class="footer-title">Links</h4>
+          <ul class="list-unstyled footer-text">
+            <li>
+              <a href="https://nhs.negauneeschools.org/" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                Negaunee High School
+              </a>
+            </li>
+            <li>
+              <a href="https://www.negauneeschools.org/" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                Negaunee Public Schools
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="mb-0">
+          &copy; <span id="current-year"></span> NHS Scholarship Fund. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+  <!-- Custom JavaScript -->
+  <script src="js/main.js"></script>
+  <script src="js/form-validation.js"></script>
+</body>
+</html>
