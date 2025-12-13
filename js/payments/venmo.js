@@ -2,21 +2,34 @@
  * NHS Scholarship Fund - Venmo Integration
  * See VENMO_INTEGRATION.md for full documentation
  *
- * Note: Venmo is integrated through the PayPal SDK
- * PLACEHOLDER: Uses same Client ID as PayPal
+ * ============================================================
+ * VENMO USES THE PAYPAL SDK
+ * ============================================================
+ *
+ * Venmo is integrated through the PayPal JavaScript SDK.
+ * The same PayPal Client ID is used for both PayPal and Venmo.
+ *
+ * Requirements:
+ * 1. PayPal Client ID must be configured in index.html
+ * 2. The SDK URL must include: enable-funding=venmo
+ * 3. PayPal Business account must have Venmo enabled
+ *
+ * To enable Venmo on your PayPal account:
+ * 1. Log into PayPal Business Dashboard
+ * 2. Go to Account Settings > Payment Preferences
+ * 3. Enable Venmo as a payment method
+ *
+ * ============================================================
  */
 
 (function() {
   'use strict';
 
-  // Configuration
-  const VENMO_CONFIG = {
-    // Venmo uses PayPal's SDK and credentials
-    enabled: true
-  };
+  // Track if Venmo button has been rendered
+  let venmoButtonRendered = false;
 
   /**
-   * Initialize Venmo button
+   * Initialize Venmo button in the specified container
    * @param {string} containerId - ID of container element for Venmo button
    */
   function initVenmoButton(containerId) {
@@ -26,77 +39,176 @@
       return;
     }
 
-    // Check if PayPal SDK is loaded (Venmo is part of PayPal SDK)
+    // Clear container
+    container.innerHTML = '';
+
+    // Check if PayPal SDK is loaded (Venmo uses PayPal SDK)
     if (typeof paypal === 'undefined') {
       container.innerHTML =
-        '<p class="text-warning text-center">' +
+        '<div class="alert alert-warning" role="alert">' +
         '<i class="bi bi-exclamation-triangle"></i> ' +
-        'Venmo SDK not loaded. Add PayPal Client ID to enable Venmo payments.' +
-        '</p>';
+        '<strong>Venmo not available.</strong> ' +
+        'The PayPal Client ID needs to be configured. ' +
+        'See index.html for setup instructions.' +
+        '</div>';
+      console.error('PayPal SDK not loaded. Venmo requires PayPal SDK.');
       return;
     }
 
-    // Render Venmo button (through PayPal SDK)
-    paypal.Buttons({
-      fundingSource: paypal.FUNDING.VENMO,
+    // Check if Venmo funding source is available
+    if (!paypal.FUNDING || !paypal.FUNDING.VENMO) {
+      container.innerHTML =
+        '<div class="alert alert-info" role="alert">' +
+        '<i class="bi bi-info-circle"></i> ' +
+        'Venmo is not available in your region or on this device. ' +
+        'Please use another payment method.' +
+        '</div>';
+      return;
+    }
 
-      style: {
-        layout: 'vertical',
-        color: 'blue',
-        shape: 'rect',
-        label: 'venmo'
-      },
+    // Render Venmo button
+    try {
+      paypal.Buttons({
+        fundingSource: paypal.FUNDING.VENMO,
 
-      createOrder: function(data, actions) {
-        const amount = window.NHSDonation ? window.NHSDonation.getAmount() : 0;
+        // Button style
+        style: {
+          layout: 'vertical',
+          color: 'blue',
+          shape: 'rect',
+          label: 'venmo',
+          height: 48
+        },
 
-        if (!amount || amount <= 0) {
-          alert('Please select a donation amount.');
-          return;
-        }
+        // Called when button is clicked - validate before opening Venmo
+        onClick: function(data, actions) {
+          const amount = window.NHSDonation ? window.NHSDonation.getAmount() : null;
 
-        return actions.order.create({
-          purchase_units: [{
-            description: 'NHS Scholarship Fund Donation',
-            amount: {
-              currency_code: 'USD',
-              value: amount.toFixed(2)
-            }
-          }]
-        });
-      },
-
-      onApprove: function(data, actions) {
-        return actions.order.capture().then(function(details) {
-          // Successful payment
-          const state = window.NHSDonation ? window.NHSDonation.getState() : {};
-          const params = new URLSearchParams();
-          params.set('amount', state.amount || 0);
-          params.set('method', 'Venmo');
-          params.set('transaction', data.orderID);
-          if (state.scholarshipName) {
-            params.set('scholarship', state.scholarshipName);
+          if (!amount || amount <= 0) {
+            showPaymentError('Please select or enter a donation amount first.');
+            return actions.reject();
           }
 
-          window.location.href = 'pages/thank-you.html?' + params.toString();
-        });
-      },
+          return actions.resolve();
+        },
 
-      onError: function(err) {
-        console.error('Venmo Error:', err);
-        window.location.href = 'pages/error.html?reason=payment_failed';
-      },
+        // Create the order
+        createOrder: function(data, actions) {
+          const state = window.NHSDonation ? window.NHSDonation.getState() : {};
+          const amount = state.amount || 0;
+          const scholarshipName = state.scholarshipName || 'General Fund';
 
-      onCancel: function(data) {
-        console.log('Venmo payment cancelled');
-        // User cancelled, stay on page
-      }
-    }).render('#' + containerId);
+          return actions.order.create({
+            purchase_units: [{
+              description: 'NHS Scholarship Fund Donation' + (scholarshipName ? ' - ' + scholarshipName : ''),
+              custom_id: state.donorEmail || '',
+              amount: {
+                currency_code: 'USD',
+                value: amount.toFixed(2)
+              }
+            }]
+          });
+        },
+
+        // Handle successful payment
+        onApprove: function(data, actions) {
+          showPaymentProcessing();
+
+          return actions.order.capture().then(function(details) {
+            // Payment successful - redirect to thank you page
+            const state = window.NHSDonation ? window.NHSDonation.getState() : {};
+            const params = new URLSearchParams();
+            params.set('amount', state.amount || 0);
+            params.set('method', 'Venmo');
+            params.set('transaction', data.orderID);
+            if (state.scholarshipName) {
+              params.set('scholarship', state.scholarshipName);
+            }
+            if (state.donorName) {
+              params.set('donor', state.donorName);
+            }
+
+            window.location.href = 'pages/thank-you.html?' + params.toString();
+          });
+        },
+
+        // Handle errors
+        onError: function(err) {
+          console.error('Venmo Error:', err);
+          hidePaymentProcessing();
+          showPaymentError('There was an error processing your Venmo payment. Please try again.');
+        },
+
+        // Handle cancellation
+        onCancel: function(data) {
+          console.log('Venmo payment cancelled by user');
+          hidePaymentProcessing();
+        }
+      }).render('#' + containerId).then(function() {
+        venmoButtonRendered = true;
+      }).catch(function(err) {
+        console.error('Venmo button render error:', err);
+        // Venmo might not be eligible - show info message
+        container.innerHTML =
+          '<div class="alert alert-info" role="alert">' +
+          '<i class="bi bi-info-circle"></i> ' +
+          'Venmo is not available for this transaction. ' +
+          'Please use PayPal or another payment method.' +
+          '</div>';
+      });
+    } catch (err) {
+      console.error('Venmo initialization error:', err);
+    }
+  }
+
+  /**
+   * Show error message
+   */
+  function showPaymentError(message) {
+    const container = document.getElementById('payment-container');
+    if (container) {
+      const existingAlert = container.querySelector('.alert-danger');
+      if (existingAlert) existingAlert.remove();
+
+      const alert = document.createElement('div');
+      alert.className = 'alert alert-danger mt-3';
+      alert.setAttribute('role', 'alert');
+      alert.innerHTML = '<i class="bi bi-exclamation-circle"></i> ' + message;
+      container.appendChild(alert);
+
+      setTimeout(function() { alert.remove(); }, 5000);
+    }
+  }
+
+  /**
+   * Show processing indicator
+   */
+  function showPaymentProcessing() {
+    const container = document.getElementById('payment-container');
+    if (container) {
+      const processing = document.createElement('div');
+      processing.id = 'payment-processing';
+      processing.className = 'text-center py-3';
+      processing.innerHTML =
+        '<div class="spinner-border text-primary" role="status">' +
+        '<span class="visually-hidden">Processing...</span>' +
+        '</div>' +
+        '<p class="mt-2 mb-0">Processing your Venmo payment...</p>';
+      container.appendChild(processing);
+    }
+  }
+
+  /**
+   * Hide processing indicator
+   */
+  function hidePaymentProcessing() {
+    const processing = document.getElementById('payment-processing');
+    if (processing) processing.remove();
   }
 
   // Export for use by other modules
   window.NHSVenmo = {
     init: initVenmoButton,
-    config: VENMO_CONFIG
+    isRendered: function() { return venmoButtonRendered; }
   };
 })();
