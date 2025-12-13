@@ -1,0 +1,506 @@
+/* NHS Scholarship Fund - Main Styles */
+
+/* ================================
+   CSS Custom Properties (Variables)
+   School Colors from nhs.negauneeschools.org
+   ================================ */
+:root {
+  /* Primary Colors - Negaunee Miners (Maize & Blue) */
+  --nhs-blue: #00274C;
+  --nhs-gold: #FFCB05;
+
+  /* Supporting Colors */
+  --nhs-blue-light: #003366;
+  --nhs-blue-dark: #001a33;
+  --nhs-gold-light: #FFD633;
+  --nhs-gold-dark: #E6B800;
+
+  /* Neutral Colors */
+  --white: #FFFFFF;
+  --gray-100: #F8F9FA;
+  --gray-200: #E9ECEF;
+  --gray-300: #DEE2E6;
+  --gray-400: #CED4DA;
+  --gray-500: #ADB5BD;
+  --gray-600: #6C757D;
+  --gray-700: #495057;
+  --gray-800: #343A40;
+  --gray-900: #212529;
+
+  /* Alert/Status Colors */
+  --demo-banner-bg: #FFF3CD;
+  --demo-banner-text: #856404;
+  --demo-banner-border: #FFE69C;
+  --error-color: #DC3545;
+  --success-color: #198754;
+
+  /* Fonts */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-accent: 'Lora', Georgia, serif;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+}
+
+/* ================================
+   Base Styles
+   ================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  color: var(--gray-900);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-accent);
+  color: var(--nhs-blue);
+  margin-bottom: var(--spacing-md);
+}
+
+a {
+  color: var(--nhs-blue);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--nhs-blue-light);
+  text-decoration: underline;
+}
+
+/* ================================
+   Demonstration Banner
+   ================================ */
+.demo-banner {
+  background-color: var(--demo-banner-bg);
+  border-bottom: 2px solid var(--demo-banner-border);
+  color: var(--demo-banner-text);
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-align: center;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 1050;
+}
+
+.demo-banner .bi {
+  margin-right: var(--spacing-xs);
+}
+
+/* ================================
+   Header Styles
+   ================================ */
+.site-header {
+  background-color: var(--nhs-blue);
+  color: var(--white);
+  padding: var(--spacing-md) 0;
+}
+
+.site-header .navbar-brand {
+  color: var(--white);
+  font-family: var(--font-accent);
+  font-size: 1.25rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.site-header .navbar-brand:hover {
+  color: var(--nhs-gold);
+  text-decoration: none;
+}
+
+.site-logo {
+  max-height: 50px;
+  width: auto;
+}
+
+/* ================================
+   Hero Section
+   ================================ */
+.hero-section {
+  background: linear-gradient(135deg, var(--nhs-blue) 0%, var(--nhs-blue-light) 100%);
+  color: var(--white);
+  padding: var(--spacing-xxl) 0;
+  text-align: center;
+}
+
+.hero-section h1 {
+  color: var(--white);
+  font-size: 2rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.hero-section .lead {
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-lg);
+  opacity: 0.95;
+}
+
+.hero-section .btn-donate {
+  background-color: var(--nhs-gold);
+  border-color: var(--nhs-gold);
+  color: var(--nhs-blue);
+  font-weight: 600;
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: 1.1rem;
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+}
+
+.hero-section .btn-donate:hover {
+  background-color: var(--nhs-gold-dark);
+  border-color: var(--nhs-gold-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ================================
+   Donation Form Section
+   ================================ */
+.donation-section {
+  padding: var(--spacing-xxl) 0;
+  background-color: var(--gray-100);
+}
+
+.donation-card {
+  background-color: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: var(--spacing-xl);
+}
+
+.donation-card h2 {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.section-subtitle {
+  color: var(--gray-600);
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Amount Selection */
+.amount-selection {
+  margin-bottom: var(--spacing-lg);
+}
+
+.amount-label {
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  color: var(--gray-800);
+}
+
+.amount-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.amount-btn {
+  flex: 1;
+  min-width: calc(33.333% - var(--spacing-sm));
+  padding: var(--spacing-md);
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: 2px solid var(--nhs-blue);
+  background-color: var(--white);
+  color: var(--nhs-blue);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 48px;
+}
+
+.amount-btn:hover {
+  background-color: var(--nhs-blue);
+  color: var(--white);
+}
+
+.amount-btn.active {
+  background-color: var(--nhs-blue);
+  color: var(--white);
+  box-shadow: 0 2px 8px rgba(0, 39, 76, 0.3);
+}
+
+.custom-amount-wrapper {
+  position: relative;
+}
+
+.custom-amount-wrapper .input-group-text {
+  background-color: var(--gray-200);
+  border-color: var(--gray-300);
+  font-weight: 600;
+}
+
+.custom-amount-wrapper input {
+  border-color: var(--gray-300);
+  padding: var(--spacing-md);
+  font-size: 1rem;
+  min-height: 48px;
+}
+
+.custom-amount-wrapper input:focus {
+  border-color: var(--nhs-blue);
+  box-shadow: 0 0 0 0.2rem rgba(0, 39, 76, 0.25);
+}
+
+/* Form Fields */
+.form-label {
+  font-weight: 500;
+  color: var(--gray-700);
+  margin-bottom: var(--spacing-xs);
+}
+
+.form-control {
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--gray-300);
+  min-height: 48px;
+  font-size: 1rem;
+}
+
+.form-control:focus {
+  border-color: var(--nhs-blue);
+  box-shadow: 0 0 0 0.2rem rgba(0, 39, 76, 0.25);
+}
+
+.form-text {
+  color: var(--gray-600);
+  font-size: 0.875rem;
+}
+
+/* Payment Methods */
+.payment-methods {
+  margin-top: var(--spacing-xl);
+}
+
+.payment-methods h3 {
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-md);
+  color: var(--gray-800);
+}
+
+.payment-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  width: 100%;
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  border: 2px solid var(--gray-300);
+  background-color: var(--white);
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 56px;
+}
+
+.payment-btn:hover {
+  border-color: var(--nhs-blue);
+  background-color: var(--gray-100);
+}
+
+.payment-btn.active {
+  border-color: var(--nhs-blue);
+  background-color: rgba(0, 39, 76, 0.05);
+}
+
+.payment-btn img {
+  height: 24px;
+  width: auto;
+}
+
+.payment-container {
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  background-color: var(--gray-100);
+  border-radius: var(--radius-md);
+  min-height: 100px;
+}
+
+/* Validation Styles */
+.is-invalid {
+  border-color: var(--error-color) !important;
+}
+
+.invalid-feedback {
+  color: var(--error-color);
+  font-size: 0.875rem;
+  margin-top: var(--spacing-xs);
+}
+
+.is-valid {
+  border-color: var(--success-color) !important;
+}
+
+/* ================================
+   Footer Styles
+   ================================ */
+.site-footer {
+  background-color: var(--nhs-blue);
+  color: var(--white);
+  padding: var(--spacing-xl) 0;
+  margin-top: auto;
+}
+
+.site-footer a {
+  color: var(--nhs-gold);
+}
+
+.site-footer a:hover {
+  color: var(--nhs-gold-light);
+}
+
+.footer-title {
+  color: var(--nhs-gold);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+}
+
+.footer-text {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-lg);
+  text-align: center;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* ================================
+   Thank You Page Styles
+   ================================ */
+.thank-you-section {
+  padding: var(--spacing-xxl) 0;
+  text-align: center;
+}
+
+.thank-you-card {
+  background-color: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: var(--spacing-xxl);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.thank-you-icon {
+  width: 80px;
+  height: 80px;
+  background-color: var(--success-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--spacing-lg);
+}
+
+.thank-you-icon svg {
+  width: 40px;
+  height: 40px;
+  color: var(--white);
+}
+
+.donation-summary {
+  background-color: var(--gray-100);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  margin: var(--spacing-lg) 0;
+}
+
+.donation-summary dt {
+  color: var(--gray-600);
+  font-weight: 500;
+}
+
+.donation-summary dd {
+  color: var(--nhs-blue);
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing-md);
+}
+
+/* ================================
+   Error Page Styles
+   ================================ */
+.error-section {
+  padding: var(--spacing-xxl) 0;
+  text-align: center;
+}
+
+.error-card {
+  background-color: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: var(--spacing-xxl);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.error-icon {
+  width: 80px;
+  height: 80px;
+  background-color: var(--error-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--spacing-lg);
+}
+
+.error-icon svg {
+  width: 40px;
+  height: 40px;
+  color: var(--white);
+}
+
+/* ================================
+   Utility Classes
+   ================================ */
+.text-nhs-blue {
+  color: var(--nhs-blue);
+}
+
+.text-nhs-gold {
+  color: var(--nhs-gold);
+}
+
+.bg-nhs-blue {
+  background-color: var(--nhs-blue);
+}
+
+.bg-nhs-gold {
+  background-color: var(--nhs-gold);
+}
