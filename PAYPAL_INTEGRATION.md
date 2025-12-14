@@ -14,6 +14,80 @@ PayPal is the most widely used online payment platform and provides a well-docum
 
 ---
 
+## Nonprofit Fee Considerations
+
+> ⚠️ **IMPORTANT**: To avoid paying standard commercial rates, the school MUST apply for PayPal's charity rate or enroll in PayPal Giving Fund BEFORE processing live donations.
+
+### Fee Structure Comparison
+
+| Account Type | Transaction Fee | Example: $50 Donation |
+|--------------|-----------------|----------------------|
+| Standard Business | 2.89% + $0.49 | $48.07 net |
+| **Verified 501(c)(3)** | **1.99% + $0.49** | **$48.52 net** |
+| PayPal Giving Fund | 0% | $50.00 net |
+
+### Option 1: PayPal Charity Rate (Recommended for Direct Control)
+
+**Benefits:**
+- Lower fees (1.99% + $0.49 vs 2.89% + $0.49)
+- Immediate access to funds
+- Full control over donor data
+- School issues own tax receipts
+
+**Requirements to Qualify:**
+1. Must be a registered 501(c)(3) organization
+2. Must create a PayPal Business account
+3. Must apply for charity verification at [paypal.com/charities](https://www.paypal.com/charities)
+
+**Application Process:**
+1. Go to [paypal.com/charities](https://www.paypal.com/charities)
+2. Log in with the school's PayPal Business account
+3. Select "Nonprofit Organization" as business type
+4. Check "This nonprofit is a registered charity"
+5. Provide required documentation:
+   - 501(c)(3) determination letter from IRS
+   - Bank account information
+   - Proof of identity for account holder
+6. Wait for confirmation email from PayPal
+7. **Do NOT go live until confirmation is received** - fees remain at standard rate until verified
+
+### Option 2: PayPal Giving Fund (Zero Fees)
+
+**Benefits:**
+- 0% transaction fees (PayPal covers them)
+- Access to PayPal/eBay giving programs
+- Increased visibility to donors
+
+**Trade-offs:**
+- **Payout delay**: 15-45 days for enrolled charities, up to 90 days for unenrolled
+- PayPal acts as intermediary - funds go to PayPal Giving Fund first
+- Tax receipts issued by PayPal Giving Fund (a 501(c)(3)), not your organization
+- Less control over donor information
+- Grants are typically unrestricted
+
+**How to Enroll:**
+1. Visit [PayPal Giving Fund](https://www.paypal.com/us/webapps/mpp/givingfund/home)
+2. Search for your organization or apply to be listed
+3. Complete enrollment process
+
+### Additional Fee Considerations
+
+- **International donations**: Additional 1.5% currency conversion fee
+- **Chargebacks**: May incur additional fees
+- **Refunds**: Original transaction fee is not refunded
+
+### Recommendation for NHS Scholarship Fund
+
+For a school scholarship fund, we recommend **Option 1 (Charity Rate)** because:
+1. Immediate access to funds for scholarship disbursement
+2. Full control over donor records for recognition/stewardship
+3. School can issue tax receipts directly
+4. Only slightly higher fees than Giving Fund (less than $1 per typical donation)
+
+However, if minimizing fees is the top priority and the payout delay is acceptable, PayPal Giving Fund provides zero-fee processing.
+
+---
+
 ## Phase 1: PayPal Account Setup
 
 ### Task 1.1: Create/Access PayPal Developer Account
@@ -282,13 +356,23 @@ PayPal is the most widely used online payment platform and provides a well-docum
 
 ## Phase 5: Production Deployment
 
+> ⚠️ **CRITICAL**: Before deploying to production, ensure the school has completed PayPal charity verification and received confirmation. See "Nonprofit Fee Considerations" section above.
+
+### Pre-Production Checklist
+- [ ] School has created PayPal Business account
+- [ ] School has applied for charity status at paypal.com/charities
+- [ ] School has received confirmation email verifying 501(c)(3) status
+- [ ] Discounted charity rate (1.99% + $0.49) is active on the account
+
 ### Task 5.1: Create Live PayPal App
 - [ ] In PayPal Developer Dashboard, switch to "Live" mode
 - [ ] Create a new app for production
 - [ ] Get the Live Client ID
+- [ ] Verify the account shows charity pricing in PayPal settings
 
 **Testing Checkpoint 5.1:**
 - [ ] Have a valid live Client ID
+- [ ] Charity rate confirmation email received
 
 ### Task 5.2: Update SDK to Use Live Credentials
 - [ ] Replace sandbox Client ID with live Client ID

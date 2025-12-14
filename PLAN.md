@@ -311,6 +311,91 @@ Based on stakeholder feedback, the following requirements have been confirmed:
 
 > ⚠️ **Note**: Payment merchant accounts will be set up by school administration. Use placeholder credentials during development and document where they need to be replaced.
 
+### Important: PayPal Nonprofit Requirements
+
+To receive discounted nonprofit rates and avoid standard commercial fees, the school must complete the following **before going live**:
+
+#### Option 1: PayPal Charity Rate (Recommended)
+- **Fee**: 1.99% + $0.49 per transaction (vs standard 2.89% + $0.49)
+- **Requirements**:
+  1. Create a PayPal Business account
+  2. Select "Nonprofit Organization" as business type
+  3. Apply for charity status at [paypal.com/charities](https://www.paypal.com/charities)
+  4. Provide 501(c)(3) documentation
+  5. Wait for confirmation email before going live
+- **Note**: Discounted pricing does NOT apply until PayPal confirms charity status
+
+#### Option 2: PayPal Giving Fund (Zero Fees)
+- **Fee**: 0% - PayPal covers all transaction fees
+- **Trade-offs**:
+  - Payout delay: 15-45 days for enrolled charities
+  - PayPal controls funds (acts as intermediary)
+  - Tax receipts issued by PayPal Giving Fund, not the school
+  - Less control over donor data
+- **Enroll at**: [PayPal Giving Fund](https://www.paypal.com/us/webapps/mpp/givingfund/home)
+
+#### Fee Comparison Example ($50 donation)
+
+| Method | Fee | Net to School |
+|--------|-----|---------------|
+| Standard PayPal | 2.89% + $0.49 | $48.07 |
+| Charity Rate | 1.99% + $0.49 | $48.52 |
+| PayPal Giving Fund | 0% | $50.00 |
+
+#### Pre-Launch Checklist for Nonprofit Status
+- [ ] Verify NHS Scholarship Fund has 501(c)(3) status
+- [ ] Create PayPal Business account for the fund
+- [ ] Apply for PayPal charity status verification
+- [ ] Receive confirmation email from PayPal
+- [ ] Consider enrolling in PayPal Giving Fund for zero fees
+
+### Venmo Nonprofit Fees (Best Rate!)
+
+Venmo offers the **lowest fees** for nonprofit donations:
+
+| Transaction Type | Fee | Net on $50 |
+|------------------|-----|------------|
+| **Standard Donation** | **1.9% + $0.10** | **$49.05** |
+| Tap to Pay | 2.29% + $0.09 | $48.77 |
+
+**Requirements**: 501(c)(3) verification through PayPal (same process)
+**Limitations**: US-only, no recurring donations, mobile-focused
+
+### Google Pay & Apple Pay Fees
+
+These are **payment methods**, not processors. They charge **$0** - your payment processor (Stripe/Braintree) charges their fee.
+
+| Method | Their Fee | Processor Fee (Stripe nonprofit) | Net on $50 |
+|--------|-----------|----------------------------------|------------|
+| Google Pay | $0 | 2.2% + $0.30 | $48.60 |
+| Apple Pay | $0 | 2.2% + $0.30 | $48.60 |
+
+**Additional Costs**:
+- Apple Developer Account: $99/year (required for Apple Pay)
+- Stripe nonprofit rate requires application: [stripe.com/nonprofits](https://stripe.com/nonprofits)
+
+### Complete Fee Comparison
+
+| Payment Method | Fee Structure | Net on $50 | Notes |
+|----------------|---------------|------------|-------|
+| **Venmo** | **1.9% + $0.10** | **$49.05** | **Best rate** |
+| PayPal Charity | 1.99% + $0.49 | $48.52 | Requires verification |
+| Google/Apple Pay + Stripe | 2.2% + $0.30 | $48.60 | Stripe nonprofit rate |
+| PayPal Giving Fund | 0% | $50.00 | 15-45 day payout delay |
+
+### Master Pre-Launch Checklist for Nonprofit Rates
+
+- [ ] Verify NHS Scholarship Fund has 501(c)(3) status
+- [ ] Create PayPal Business account
+- [ ] Apply for PayPal charity status at [paypal.com/charities](https://www.paypal.com/charities)
+- [ ] Set up Venmo Charity Profile (through PayPal)
+- [ ] Apply for Stripe nonprofit discount at [stripe.com/nonprofits](https://stripe.com/nonprofits)
+- [ ] Register with Candid.org for Seal of Transparency (for Apple Pay)
+- [ ] Enroll in Apple Developer Program ($99/year)
+- [ ] Receive all confirmation emails before going live
+
+---
+
 Each payment integration has its own detailed document:
 
 ### Task 6.1: PayPal Integration

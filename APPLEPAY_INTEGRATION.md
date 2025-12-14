@@ -23,6 +23,86 @@ Apple Pay provides a seamless checkout experience for iOS and macOS users. It's 
 
 ---
 
+## Nonprofit Fee Considerations
+
+> ℹ️ **Important**: Apple charges no fees, but your payment processor and Apple Developer account do have costs.
+
+### How Apple Pay Fees Work
+
+Like Google Pay, Apple Pay is a **payment method**, not a processor:
+1. Apple Pay securely provides card/payment details
+2. Your **payment processor** (Stripe, Braintree) charges their standard fee
+3. Apple charges **nothing** for Apple Pay transactions
+
+### Cost Breakdown
+
+| Cost Type | Amount | Notes |
+|-----------|--------|-------|
+| Apple Pay transaction fee | **$0** | Apple charges nothing |
+| Apple Developer Account | **$99/year** | Required for Apple Pay integration |
+| Payment processor fee | Varies | See comparison below |
+
+### Payment Processor Fees (with Apple Pay)
+
+| Payment Processor | Standard Fee | Nonprofit Fee* |
+|-------------------|--------------|----------------|
+| Stripe | 2.9% + $0.30 | 2.2% + $0.30 |
+| Braintree/PayPal | 2.89% + $0.49 | 1.99% + $0.49 |
+
+*Requires nonprofit verification with processor
+
+### Nonprofit Eligibility for Apple Pay
+
+To use Apple Pay for donations, your organization must meet **one** of these requirements:
+
+**Option 1: Candid Seal of Transparency**
+- Register at [candid.org](https://www.candid.org/) (formerly GuideStar)
+- Obtain a 2025 Seal of Transparency (Bronze, Silver, Gold, or Platinum)
+- Provides credibility and meets Apple's requirements
+
+**Option 2: Benevity Verification**
+- [Benevity](https://www.benevity.com/) is an Apple partner for nonprofit verification
+- They vet and approve organizations for Apple Pay eligibility
+- May have additional requirements/fees
+
+### Total Cost Example ($50 donation via Apple Pay + Stripe)
+
+| Item | Cost |
+|------|------|
+| Apple Pay fee | $0 |
+| Stripe nonprofit fee | $1.40 (2.2% + $0.30) |
+| **Net to charity** | **$48.60** |
+| Apple Developer Account | $99/year (one-time annual cost) |
+
+### Recommendation for NHS Scholarship Fund
+
+**Apple Pay is worth including** despite the $99/year developer fee because:
+1. High adoption among Apple users (500M+ users worldwide)
+2. 41% growth in Apple Pay usage (2022-2024)
+3. Seamless checkout increases conversion rates
+4. No per-transaction fees from Apple
+
+**Break-even analysis**: At 2.2% + $0.30 Stripe fee, you'd need ~$4,500 in annual Apple Pay donations to justify the $99 developer fee (less than 1% overhead).
+
+### Pre-Launch Checklist
+
+- [ ] Verify NHS Scholarship Fund has/can get Candid Seal of Transparency
+- [ ] Enroll in Apple Developer Program ($99/year)
+- [ ] Apply for Stripe nonprofit discount (if using Stripe)
+- [ ] Complete domain verification with Apple
+- [ ] Generate required certificates
+
+### Important: Recurring Donations Limitation
+
+Apple Pay tokens change when:
+- User gets a new device
+- User updates their credit card
+- Card expires
+
+This makes recurring donations challenging with Apple Pay. For recurring gifts, recommend PayPal/Venmo subscription features instead.
+
+---
+
 ## Phase 1: Apple Developer Account Setup
 
 ### Task 1.1: Access Apple Developer Portal
