@@ -200,10 +200,8 @@
       '<div id="' + containerId + '" class="payment-button-wrapper"></div>';
 
     // Initialize the appropriate payment method
-    // Use setTimeout to ensure container is in DOM
-    setTimeout(function() {
-      initializePaymentMethod(method, containerId);
-    }, 100);
+    // Container is synchronously added to DOM, so no delay needed
+    initializePaymentMethod(method, containerId);
   }
 
   /**

@@ -81,11 +81,13 @@
           const state = window.NHSDonation ? window.NHSDonation.getState() : {};
           const amount = state.amount || 0;
           const scholarshipName = state.scholarshipName || 'General Fund';
+          // Use non-sensitive transaction ID instead of email for privacy
+          const transactionId = window.NHSPaymentUtils ? window.NHSPaymentUtils.generateTransactionId() : '';
 
           return actions.order.create({
             purchase_units: [{
               description: 'NHS Scholarship Fund Donation' + (scholarshipName ? ' - ' + scholarshipName : ''),
-              custom_id: state.donorEmail || '', // Store donor email for reference
+              custom_id: transactionId,
               amount: {
                 currency_code: 'USD',
                 value: amount.toFixed(2)
@@ -134,6 +136,7 @@
         paypalButtonRendered = true;
       }).catch(function(err) {
         console.error('PayPal button render error:', err);
+        hidePaymentProcessing();
         container.innerHTML =
           '<div class="alert alert-danger" role="alert">' +
           '<i class="bi bi-x-circle"></i> ' +
@@ -146,55 +149,30 @@
   }
 
   /**
-   * Show error message in payment container
+   * Show error message - uses shared utility for accessibility
    * @param {string} message - Error message to display
    */
   function showPaymentError(message) {
-    const container = document.getElementById('payment-container');
-    if (container) {
-      const existingAlert = container.querySelector('.alert-danger');
-      if (existingAlert) {
-        existingAlert.remove();
-      }
-
-      const alert = document.createElement('div');
-      alert.className = 'alert alert-danger mt-3';
-      alert.setAttribute('role', 'alert');
-      alert.innerHTML = '<i class="bi bi-exclamation-circle"></i> ' + message;
-      container.appendChild(alert);
-
-      // Remove after 5 seconds
-      setTimeout(function() {
-        alert.remove();
-      }, 5000);
+    if (window.NHSPaymentUtils) {
+      window.NHSPaymentUtils.showError(message);
     }
   }
 
   /**
-   * Show processing indicator
+   * Show processing indicator - uses shared utility
    */
   function showPaymentProcessing() {
-    const container = document.getElementById('payment-container');
-    if (container) {
-      const processing = document.createElement('div');
-      processing.id = 'payment-processing';
-      processing.className = 'text-center py-3';
-      processing.innerHTML =
-        '<div class="spinner-border text-primary" role="status">' +
-        '<span class="visually-hidden">Processing...</span>' +
-        '</div>' +
-        '<p class="mt-2 mb-0">Processing your donation...</p>';
-      container.appendChild(processing);
+    if (window.NHSPaymentUtils) {
+      window.NHSPaymentUtils.showProcessing();
     }
   }
 
   /**
-   * Hide processing indicator
+   * Hide processing indicator - uses shared utility
    */
   function hidePaymentProcessing() {
-    const processing = document.getElementById('payment-processing');
-    if (processing) {
-      processing.remove();
+    if (window.NHSPaymentUtils) {
+      window.NHSPaymentUtils.hideProcessing();
     }
   }
 

@@ -194,27 +194,12 @@
       // 3. Pass that session to session.completeMerchantValidation()
 
       // For now, show configuration message
+      // See APPLEPAY_INTEGRATION.md for production implementation example
       showPaymentError(
         'Apple Pay merchant validation not configured. ' +
         'Server-side setup required. See APPLEPAY_INTEGRATION.md'
       );
       session.abort();
-
-      /* Production implementation:
-      fetch(APPLEPAY_CONFIG.merchantValidationEndpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ validationURL: event.validationURL })
-      })
-      .then(response => response.json())
-      .then(merchantSession => {
-        session.completeMerchantValidation(merchantSession);
-      })
-      .catch(err => {
-        console.error('Merchant validation failed:', err);
-        session.abort();
-      });
-      */
     };
 
     // Payment authorization handler
@@ -239,39 +224,14 @@
 
   /**
    * Process Apple Pay payment
+   * See APPLEPAY_INTEGRATION.md for production implementation example
    */
   function processApplePayPayment(payment, state, session) {
     // In production:
     // 1. Send payment.token.paymentData to your payment processor
     // 2. Process the payment
     // 3. Call session.completePayment() with result
-
-    /* Production implementation:
-    fetch('/api/apple-pay/process', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        token: payment.token,
-        amount: state.amount,
-        scholarship: state.scholarshipName
-      })
-    })
-    .then(response => response.json())
-    .then(result => {
-      if (result.success) {
-        session.completePayment(ApplePaySession.STATUS_SUCCESS);
-        // Redirect to thank you page
-        redirectToThankYou(state);
-      } else {
-        session.completePayment(ApplePaySession.STATUS_FAILURE);
-        showPaymentError('Payment failed. Please try again.');
-      }
-    })
-    .catch(err => {
-      session.completePayment(ApplePaySession.STATUS_FAILURE);
-      showPaymentError('Payment processing error. Please try again.');
-    });
-    */
+    // See APPLEPAY_INTEGRATION.md for complete production example
 
     // For demo, complete with success and redirect
     session.completePayment(ApplePaySession.STATUS_SUCCESS);
@@ -296,21 +256,11 @@
   }
 
   /**
-   * Show error message
+   * Show error message - uses shared utility for accessibility
    */
   function showPaymentError(message) {
-    const container = document.getElementById('payment-container');
-    if (container) {
-      const existingAlert = container.querySelector('.alert-danger');
-      if (existingAlert) existingAlert.remove();
-
-      const alert = document.createElement('div');
-      alert.className = 'alert alert-danger mt-3';
-      alert.setAttribute('role', 'alert');
-      alert.innerHTML = '<i class="bi bi-exclamation-circle"></i> ' + message;
-      container.appendChild(alert);
-
-      setTimeout(function() { alert.remove(); }, 5000);
+    if (window.NHSPaymentUtils) {
+      window.NHSPaymentUtils.showError(message);
     }
   }
 

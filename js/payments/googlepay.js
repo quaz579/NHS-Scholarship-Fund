@@ -59,21 +59,10 @@
         parameters: {
           // PLACEHOLDER: Replace with your payment gateway
           // Options: 'stripe', 'braintree', 'square', 'adyen', etc.
+          // See GOOGLEPAY_INTEGRATION.md for gateway-specific configuration examples
           gateway: 'example',
           // PLACEHOLDER: Replace with your gateway merchant ID
           gatewayMerchantId: 'YOUR_GATEWAY_MERCHANT_ID_HERE'
-
-          // For Stripe, use:
-          // gateway: 'stripe',
-          // 'stripe:version': '2023-10-16',
-          // 'stripe:publishableKey': 'pk_test_YOUR_STRIPE_KEY'
-
-          // For Braintree, use:
-          // gateway: 'braintree',
-          // 'braintree:apiVersion': 'v1',
-          // 'braintree:sdkVersion': '3.x.x',
-          // 'braintree:merchantId': 'YOUR_BRAINTREE_MERCHANT_ID',
-          // 'braintree:clientKey': 'YOUR_BRAINTREE_CLIENT_KEY'
         }
       }
     }]
@@ -246,21 +235,11 @@
   }
 
   /**
-   * Show error message
+   * Show error message - uses shared utility for accessibility
    */
   function showPaymentError(message) {
-    const container = document.getElementById('payment-container');
-    if (container) {
-      const existingAlert = container.querySelector('.alert-danger');
-      if (existingAlert) existingAlert.remove();
-
-      const alert = document.createElement('div');
-      alert.className = 'alert alert-danger mt-3';
-      alert.setAttribute('role', 'alert');
-      alert.innerHTML = '<i class="bi bi-exclamation-circle"></i> ' + message;
-      container.appendChild(alert);
-
-      setTimeout(function() { alert.remove(); }, 5000);
+    if (window.NHSPaymentUtils) {
+      window.NHSPaymentUtils.showError(message);
     }
   }
 
