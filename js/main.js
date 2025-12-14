@@ -194,21 +194,74 @@
 
     elements.paymentContainer.style.display = 'block';
 
-    // Update container content based on payment method
-    const methodLabels = {
-      paypal: 'PayPal',
-      venmo: 'Venmo',
-      googlepay: 'Google Pay',
-      applepay: 'Apple Pay'
-    };
-
-    const label = methodLabels[method] || 'Payment';
+    // Create container for payment button
+    const containerId = method + '-button-container';
     elements.paymentContainer.innerHTML =
-      '<p class="text-center text-muted mb-0">' +
-        '<i class="bi bi-info-circle" aria-hidden="true"></i> ' +
-        label + ' payment processing will be available once merchant accounts are configured.' +
-      '</p>' +
-      '<div id="' + method + '-button-container" class="mt-3"></div>';
+      '<div id="' + containerId + '" class="payment-button-wrapper"></div>';
+
+    // Initialize the appropriate payment method
+    // Container is synchronously added to DOM, so no delay needed
+    initializePaymentMethod(method, containerId);
+  }
+
+  /**
+   * Initialize payment method SDK buttons
+   * @param {string} method - Payment method identifier
+   * @param {string} containerId - Container element ID
+   */
+  function initializePaymentMethod(method, containerId) {
+    switch (method) {
+      case 'paypal':
+        if (window.NHSPayPal && typeof window.NHSPayPal.init === 'function') {
+          window.NHSPayPal.init(containerId);
+        } else {
+          showPaymentFallback(containerId, 'PayPal');
+        }
+        break;
+
+      case 'venmo':
+        if (window.NHSVenmo && typeof window.NHSVenmo.init === 'function') {
+          window.NHSVenmo.init(containerId);
+        } else {
+          showPaymentFallback(containerId, 'Venmo');
+        }
+        break;
+
+      case 'googlepay':
+        if (window.NHSGooglePay && typeof window.NHSGooglePay.init === 'function') {
+          window.NHSGooglePay.init(containerId);
+        } else {
+          showPaymentFallback(containerId, 'Google Pay');
+        }
+        break;
+
+      case 'applepay':
+        if (window.NHSApplePay && typeof window.NHSApplePay.init === 'function') {
+          window.NHSApplePay.init(containerId);
+        } else {
+          showPaymentFallback(containerId, 'Apple Pay');
+        }
+        break;
+
+      default:
+        showPaymentFallback(containerId, method);
+    }
+  }
+
+  /**
+   * Show fallback message when payment SDK is not available
+   * @param {string} containerId - Container element ID
+   * @param {string} methodName - Payment method display name
+   */
+  function showPaymentFallback(containerId, methodName) {
+    const container = document.getElementById(containerId);
+    if (container) {
+      container.innerHTML =
+        '<div class="alert alert-info" role="alert">' +
+        '<i class="bi bi-info-circle"></i> ' +
+        methodName + ' is being configured. Please check back later or try another payment method.' +
+        '</div>';
+    }
   }
 
   // ================================

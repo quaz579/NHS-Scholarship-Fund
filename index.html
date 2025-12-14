@@ -243,8 +243,41 @@
   <!-- Bootstrap 5 JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
+  <!--
+    ============================================================
+    PAYMENT SDK SCRIPTS
+    ============================================================
+    IMPORTANT: Replace placeholder values before going live!
+
+    PayPal SDK:
+    - Replace YOUR_PAYPAL_CLIENT_ID_HERE with your PayPal Client ID
+    - Get sandbox ID from: https://developer.paypal.com/dashboard/applications/sandbox
+    - Get live ID from: https://developer.paypal.com/dashboard/applications/live
+    - The 'enable-funding=venmo' parameter enables Venmo as a payment option
+
+    Google Pay SDK:
+    - Loads asynchronously, configuration is in js/payments/googlepay.js
+    - Replace YOUR_MERCHANT_ID_HERE in googlepay.js with your Google Merchant ID
+    - Get Merchant ID from: https://pay.google.com/business/console
+    ============================================================
+  -->
+
+  <!-- PayPal SDK (includes Venmo support) -->
+  <!-- PLACEHOLDER: Replace YOUR_PAYPAL_CLIENT_ID_HERE with actual Client ID -->
+  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID_HERE&currency=USD&intent=capture&enable-funding=venmo" data-sdk-integration-source="button-factory"></script>
+
+  <!-- Google Pay SDK -->
+  <script async src="https://pay.google.com/gp/p/js/pay.js" onload="window.googlePayLoaded && window.googlePayLoaded()"></script>
+
   <!-- Custom JavaScript -->
   <script src="js/main.js"></script>
   <script src="js/form-validation.js"></script>
+
+  <!-- Payment Integration Scripts -->
+  <script src="js/payments/payment-utils.js"></script>
+  <script src="js/payments/paypal.js"></script>
+  <script src="js/payments/venmo.js"></script>
+  <script src="js/payments/googlepay.js"></script>
+  <script src="js/payments/applepay.js"></script>
 </body>
 </html>

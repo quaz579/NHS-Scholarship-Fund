@@ -19,6 +19,70 @@ Venmo is extremely popular among younger donors and provides a familiar, mobile-
 
 ---
 
+## Nonprofit Fee Considerations
+
+> ✅ **Good News**: Venmo offers favorable rates for nonprofit donations!
+
+### Fee Structure
+
+| Transaction Type | Fee | Example: $50 Donation |
+|------------------|-----|----------------------|
+| **Standard Donation** | **1.9% + $0.10** | **$49.05 net** |
+| Tap to Pay Donation | 2.29% + $0.09 | $48.77 net |
+| Instant Transfer (optional) | +1.75% ($0.25-$25) | Additional fee |
+
+### Comparison to Other Payment Methods
+
+| Payment Method | Fee | Net on $50 |
+|----------------|-----|------------|
+| **Venmo** | **1.9% + $0.10** | **$49.05** |
+| PayPal Charity Rate | 1.99% + $0.49 | $48.52 |
+| PayPal Standard | 2.89% + $0.49 | $48.07 |
+
+**Venmo has the lowest fees for nonprofit donations!**
+
+### Requirements for Nonprofit Rate
+
+1. **501(c)(3) verification required** - Same as PayPal charity verification
+2. Create a Venmo Charity Profile through PayPal
+3. Charity profiles are automatically eligible for the 1.9% + $0.10 rate
+
+### How to Set Up a Venmo Charity Profile
+
+1. Go to [Venmo for Charity](https://venmo.com/charity)
+2. Start the application through PayPal (parent company)
+3. Provide 501(c)(3) documentation
+4. Complete profile with organization info and logo
+
+### Donor Benefits
+
+- **No fees for donors** - Venmo waives the 3% credit card fee for charity donations
+- Donors can give via Venmo balance, bank account, debit card, or credit card
+
+### Limitations to Consider
+
+- **No recurring donations** - Venmo only supports one-time gifts
+- **US-only** - Not available for international donations
+- **Mobile-focused** - Best experience is on mobile devices
+- **No donor fee coverage** - Donors cannot cover transaction costs
+
+### Transfer Options
+
+| Transfer Speed | Fee |
+|----------------|-----|
+| Standard (1-3 business days) | Free |
+| Instant Transfer | 1.75% ($0.25 min, $25 max) |
+
+### Recommendation
+
+Venmo is an excellent option for this scholarship fund because:
+1. Lowest transaction fees of all payment methods
+2. Popular with younger donors (parents of students, alumni)
+3. Mobile-friendly for easy giving
+4. No donor fees builds goodwill
+
+---
+
 ## Phase 1: Enable Venmo in PayPal
 
 ### Task 1.1: Enable Venmo for Business

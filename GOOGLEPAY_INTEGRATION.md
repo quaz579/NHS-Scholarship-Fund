@@ -20,6 +20,74 @@ Google Pay provides a fast checkout experience for Android users and Chrome brow
 
 ---
 
+## Nonprofit Fee Considerations
+
+> ℹ️ **Important**: Google Pay itself charges no fees, but your payment processor does.
+
+### How Google Pay Fees Work
+
+Google Pay is a **payment method**, not a payment processor. When a donor uses Google Pay:
+1. Google Pay provides the card/payment details securely
+2. Your **payment processor** (Stripe, Braintree, PayPal) charges their standard fee
+3. Google charges **nothing additional**
+
+### Fee Comparison (Google Pay as Payment Method)
+
+| Payment Processor | Their Fee | Google Pay Fee | Total Fee |
+|-------------------|-----------|----------------|-----------|
+| Stripe | 2.9% + $0.30 | $0 | 2.9% + $0.30 |
+| PayPal/Braintree | 2.89% + $0.49 | $0 | 2.89% + $0.49 |
+| Stripe (nonprofit) | 2.2% + $0.30* | $0 | 2.2% + $0.30 |
+
+*Stripe offers discounted nonprofit rates - apply at [stripe.com/nonprofits](https://stripe.com/nonprofits)
+
+### Alternative: Google Pay Donate Button (via For Good)
+
+Google offers a direct donation option through their partnership with **For Good** (formerly Network for Good):
+
+| Feature | Direct Integration | Google Pay via For Good |
+|---------|-------------------|------------------------|
+| Fee | Payment processor fee | **0% to charity** |
+| Payout speed | Immediate | Up to 2 months |
+| Control | Full control | Google/For Good controls |
+| Minimum payout | None | $10 donations |
+
+**How For Good Works:**
+- Google partners with For Good, a US nonprofit donor-advised fund
+- Donations go to For Good first, then disbursed to your charity
+- Disbursement happens on the 15th of the month following donation
+- Organization must be in GuideStar database
+
+### Requirements for Nonprofits
+
+1. **501(c)(3) status required** for Google Pay Donate button type
+2. Must provide IRS determination letter
+3. For For Good integration: must be listed in GuideStar
+
+### For Donors
+
+- **No fees** charged to US donors
+- International donors may pay currency conversion fees from their bank
+- 100% of donation goes to nonprofit (minus processor fees)
+
+### Recommendation for NHS Scholarship Fund
+
+**Use direct integration with Stripe** (not For Good) because:
+1. Immediate access to funds for scholarship disbursement
+2. Full control over donor data
+3. Stripe nonprofit rate (2.2% + $0.30) is reasonable
+4. No waiting for monthly disbursements
+
+Apply for Stripe's nonprofit discount: [stripe.com/nonprofits](https://stripe.com/nonprofits)
+
+### Pre-Launch Checklist
+
+- [ ] Apply for Stripe nonprofit discount (if using Stripe)
+- [ ] Verify 501(c)(3) documentation is ready
+- [ ] Consider if For Good integration is preferred over direct processing
+
+---
+
 ## Phase 1: Google Pay Account Setup
 
 ### Task 1.1: Register for Google Pay & Wallet Console
