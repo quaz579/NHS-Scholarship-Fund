@@ -71,12 +71,12 @@
       paypal.Buttons({
         fundingSource: paypal.FUNDING.VENMO,
 
-        // Button style
+        // Button style - use 'pay' label for Venmo funding source
         style: {
           layout: 'vertical',
           color: 'blue',
           shape: 'rect',
-          label: 'venmo',
+          label: 'pay',
           height: 48
         },
 
@@ -108,7 +108,10 @@
                 currency_code: 'USD',
                 value: amount.toFixed(2)
               }
-            }]
+            }],
+            application_context: {
+              shipping_preference: 'NO_SHIPPING'
+            }
           });
         },
 

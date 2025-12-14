@@ -92,7 +92,10 @@
                 currency_code: 'USD',
                 value: amount.toFixed(2)
               }
-            }]
+            }],
+            application_context: {
+              shipping_preference: 'NO_SHIPPING'
+            }
           });
         },
 
@@ -181,4 +184,38 @@
     init: initPayPalButtons,
     isRendered: function() { return paypalButtonRendered; }
   };
+
+  // Auto-initialize if container exists on page load
+  function autoInit() {
+    var container = document.getElementById('paypal-button-container');
+    if (!container || paypalButtonRendered) {
+      return;
+    }
+
+    // Check if PayPal SDK is loaded
+    if (typeof paypal !== 'undefined') {
+      initPayPalButtons('paypal-button-container');
+    } else {
+      // PayPal SDK not loaded yet, retry after a short delay
+      var retryCount = 0;
+      var maxRetries = 20;
+      var retryInterval = setInterval(function() {
+        retryCount++;
+        if (typeof paypal !== 'undefined') {
+          clearInterval(retryInterval);
+          initPayPalButtons('paypal-button-container');
+        } else if (retryCount >= maxRetries) {
+          clearInterval(retryInterval);
+          console.error('PayPal SDK failed to load after ' + maxRetries + ' retries');
+        }
+      }, 250);
+    }
+  }
+
+  // Run auto-init when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', autoInit);
+  } else {
+    autoInit();
+  }
 })();

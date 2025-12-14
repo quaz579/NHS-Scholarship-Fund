@@ -41,6 +41,32 @@
     cacheElements();
     bindEvents();
     setCurrentYear();
+    initializePaymentButtons();
+  }
+
+  /**
+   * Initialize PayPal buttons automatically on page load
+   * PayPal SDK renders both PayPal and Venmo buttons when enable-funding=venmo is set
+   */
+  function initializePaymentButtons() {
+    const containerId = 'paypal-button-container';
+    const container = document.getElementById(containerId);
+
+    if (!container) {
+      return;
+    }
+
+    // Initialize PayPal buttons (includes Venmo automatically)
+    if (window.NHSPayPal && typeof window.NHSPayPal.init === 'function') {
+      window.NHSPayPal.init(containerId);
+    } else {
+      // PayPal SDK may not be loaded yet, retry after a short delay
+      setTimeout(function() {
+        if (window.NHSPayPal && typeof window.NHSPayPal.init === 'function') {
+          window.NHSPayPal.init(containerId);
+        }
+      }, 500);
+    }
   }
 
   function cacheElements() {
@@ -69,10 +95,8 @@
       elements.customAmountInput.addEventListener('focus', handleCustomAmountFocus);
     }
 
-    // Payment method buttons
-    elements.paymentButtons.forEach(function(btn) {
-      btn.addEventListener('click', handlePaymentButtonClick);
-    });
+    // Payment method buttons (now unused - PayPal SDK handles everything)
+    // Kept for backwards compatibility in case buttons are re-added
 
     // Form input changes
     if (elements.scholarshipInput) {
