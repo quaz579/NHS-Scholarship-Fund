@@ -44,31 +44,42 @@
   }
 
   /**
-   * Initialize PayPal buttons automatically on page load
-   * PayPal SDK renders both PayPal and Venmo buttons when enable-funding=venmo is set
+   * Initialize PayPal and Venmo buttons automatically on page load
+   * Both use the PayPal SDK - Venmo is rendered separately with fundingSource parameter
    */
   function initializePaymentButtons() {
-    const containerId = 'paypal-button-container';
-    const container = document.getElementById(containerId);
+    const paypalContainerId = 'paypal-button-container';
+    const venmoContainerId = 'venmo-button-container';
+    const paypalContainer = document.getElementById(paypalContainerId);
+    const venmoContainer = document.getElementById(venmoContainerId);
 
-    if (!container) {
+    if (!paypalContainer || !venmoContainer) {
+      if (!paypalContainer) {
+        console.warn('PayPal button container not found: ' + paypalContainerId);
+      }
+      if (!venmoContainer) {
+        console.warn('Venmo button container not found: ' + venmoContainerId);
+      }
       return;
     }
 
-    // Initialize PayPal buttons (includes Venmo automatically)
-    if (window.NHSPayPal && typeof window.NHSPayPal.init === 'function') {
-      window.NHSPayPal.init(containerId);
+    // Initialize PayPal and Venmo buttons
+    // Both need the PayPal SDK to be loaded first
+    if (window.NHSPayPal && window.NHSVenmo) {
+      window.NHSPayPal.init(paypalContainerId);
+      window.NHSVenmo.init(venmoContainerId);
     } else {
       // PayPal SDK may not be loaded yet, retry up to 20 times every 250ms (5 seconds total)
       var retries = 0;
       var maxRetries = 20;
       var interval = setInterval(function() {
-        if (window.NHSPayPal && typeof window.NHSPayPal.init === 'function') {
-          window.NHSPayPal.init(containerId);
+        if (window.NHSPayPal && window.NHSVenmo) {
+          window.NHSPayPal.init(paypalContainerId);
+          window.NHSVenmo.init(venmoContainerId);
           clearInterval(interval);
         } else if (++retries >= maxRetries) {
           clearInterval(interval);
-          console.error('PayPal SDK failed to load after ' + maxRetries + ' retries');
+          console.error('Payment SDKs failed to load after ' + maxRetries + ' retries');
         }
       }, 250);
     }
