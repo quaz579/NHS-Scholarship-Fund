@@ -54,6 +54,12 @@
     const venmoContainer = document.getElementById(venmoContainerId);
 
     if (!paypalContainer || !venmoContainer) {
+      if (!paypalContainer) {
+        console.warn('PayPal button container not found: ' + paypalContainerId);
+      }
+      if (!venmoContainer) {
+        console.warn('Venmo button container not found: ' + venmoContainerId);
+      }
       return;
     }
 
