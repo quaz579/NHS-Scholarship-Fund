@@ -109,18 +109,25 @@
             const state = window.NHSDonation ? window.NHSDonation.getState() : {};
             
             // Determine which payment method was used (PayPal, Venmo, etc.)
-            let paymentMethod = 'PayPal';
-            if (details.payment_source) {
-              // The payment_source object contains the funding source that was used
-              const fundingSource = Object.keys(details.payment_source)[0];
-              if (fundingSource === 'venmo') {
-                paymentMethod = 'Venmo';
-              } else if (fundingSource === 'paypal') {
-                paymentMethod = 'PayPal';
-              } else if (fundingSource === 'card') {
-                paymentMethod = 'Debit or Credit Card';
-              } else if (fundingSource === 'paylater') {
-                paymentMethod = 'Pay Later';
+            // Map funding source keys to user-friendly payment method names
+            const paymentMethodMap = {
+              'venmo': 'Venmo',
+              'paypal': 'PayPal',
+              'card': 'Debit or Credit Card',
+              'paylater': 'Pay Later'
+            };
+            
+            let paymentMethod = 'PayPal'; // Default fallback
+            
+            if (details.payment_source && typeof details.payment_source === 'object') {
+              // Find the first recognized funding source key
+              const fundingSources = Object.keys(details.payment_source);
+              for (var i = 0; i < fundingSources.length; i++) {
+                const source = fundingSources[i];
+                if (paymentMethodMap[source]) {
+                  paymentMethod = paymentMethodMap[source];
+                  break;
+                }
               }
             }
             
