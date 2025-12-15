@@ -153,38 +153,14 @@
                   </div>
                 </fieldset>
 
-                <!-- Payment Methods -->
+                <!-- Payment Section -->
                 <div class="payment-methods">
-                  <h3>Select Payment Method</h3>
-                  <div class="payment-options" role="group" aria-label="Select payment method">
-                    <button type="button" class="payment-btn" data-method="paypal" aria-pressed="false">
-                      <i class="bi bi-paypal" aria-hidden="true"></i>
-                      PayPal
-                    </button>
-                    <button type="button" class="payment-btn" data-method="venmo" aria-pressed="false">
-                      <i class="bi bi-phone" aria-hidden="true"></i>
-                      Venmo
-                    </button>
-                    <button type="button" class="payment-btn" data-method="googlepay" aria-pressed="false">
-                      <i class="bi bi-google" aria-hidden="true"></i>
-                      Google Pay
-                    </button>
-                    <button type="button" class="payment-btn" data-method="applepay" aria-pressed="false">
-                      <i class="bi bi-apple" aria-hidden="true"></i>
-                      Apple Pay
-                    </button>
-                  </div>
-                  <input type="hidden" id="selected-payment" name="paymentMethod" value="">
-                  <div id="payment-error" class="invalid-feedback d-block" style="display: none !important;">
-                    Please select a payment method.
-                  </div>
+                  <h3>Complete Your Donation</h3>
+                  <p class="text-muted small mb-3">Choose PayPal or Venmo to complete your donation securely.</p>
 
-                  <!-- Payment Container (for SDK buttons) -->
-                  <div id="payment-container" class="payment-container" style="display: none;">
-                    <p class="text-center text-muted mb-0">
-                      <i class="bi bi-info-circle" aria-hidden="true"></i>
-                      Payment processing will appear here once configured.
-                    </p>
+                  <!-- Payment Container (PayPal SDK renders both PayPal and Venmo buttons) -->
+                  <div id="payment-container" class="payment-container">
+                    <div id="paypal-button-container" class="payment-button-wrapper"></div>
                   </div>
                 </div>
               </form>
@@ -263,11 +239,17 @@
   -->
 
   <!-- PayPal SDK (includes Venmo support) -->
-  <!-- PLACEHOLDER: Replace YOUR_PAYPAL_CLIENT_ID_HERE with actual Client ID -->
-  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID_HERE&currency=USD&intent=capture&enable-funding=venmo" data-sdk-integration-source="button-factory"></script>
+  <!-- ============================================================================= -->
+  <!-- WARNING: SANDBOX CLIENT ID IN USE - MUST BE REPLACED BEFORE PRODUCTION       -->
+  <!-- This is a PayPal SANDBOX Client ID for testing purposes only.                -->
+  <!-- Before deploying to production, you MUST replace this with a LIVE Client ID. -->
+  <!-- See PAYPAL_INTEGRATION.md for setup instructions.                            -->
+  <!-- ============================================================================= -->
+  <script src="https://www.paypal.com/sdk/js?client-id=AWGvoTT5PFos8NojF6lxAxIapqamkXmplAtCxZQUF71480RCqRTKXpAy5KnudlhYU4D_QG_hpEhMeNWA&currency=USD&intent=capture&enable-funding=venmo" data-sdk-integration-source="button-factory"></script>
 
-  <!-- Google Pay SDK -->
+  <!-- Google Pay SDK - disabled for now
   <script async src="https://pay.google.com/gp/p/js/pay.js" onload="window.googlePayLoaded && window.googlePayLoaded()"></script>
+  -->
 
   <!-- Custom JavaScript -->
   <script src="js/main.js"></script>
@@ -277,7 +259,9 @@
   <script src="js/payments/payment-utils.js"></script>
   <script src="js/payments/paypal.js"></script>
   <script src="js/payments/venmo.js"></script>
+  <!-- Google Pay and Apple Pay scripts - disabled for now
   <script src="js/payments/googlepay.js"></script>
   <script src="js/payments/applepay.js"></script>
+  -->
 </body>
 </html>

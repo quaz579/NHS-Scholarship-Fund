@@ -92,7 +92,10 @@
                 currency_code: 'USD',
                 value: amount.toFixed(2)
               }
-            }]
+            }],
+            application_context: {
+              shipping_preference: 'NO_SHIPPING'
+            }
           });
         },
 
