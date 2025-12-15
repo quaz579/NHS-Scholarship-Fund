@@ -13,8 +13,7 @@
     amount: null,
     scholarshipName: '',
     donorName: '',
-    donorEmail: '',
-    paymentMethod: null
+    donorEmail: ''
   };
 
   // ================================
@@ -213,12 +212,8 @@
       return Object.assign({}, donationState);
     },
     setAmount: setAmount,
-    setPaymentMethod: setPaymentMethod,
     getAmount: function() {
       return donationState.amount;
-    },
-    getPaymentMethod: function() {
-      return donationState.paymentMethod;
     },
     getScholarshipName: function() {
       return donationState.scholarshipName;
