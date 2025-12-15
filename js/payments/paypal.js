@@ -122,7 +122,7 @@
             if (details.payment_source && typeof details.payment_source === 'object') {
               // Find the first recognized funding source key
               const fundingSources = Object.keys(details.payment_source);
-              for (var i = 0; i < fundingSources.length; i++) {
+              for (let i = 0; i < fundingSources.length; i++) {
                 const source = fundingSources[i];
                 if (paymentMethodMap[source]) {
                   paymentMethod = paymentMethodMap[source];

@@ -1,7 +1,7 @@
 # Venmo Button Duplication Fix
 
 ## Issue
-Venmo button was appearing twice on Safari, showing both "venmo Donate" and "Pay with venmo" buttons, as reported in the GitHub issue with screenshot.
+Venmo button was appearing twice on Safari, showing both "Venmo Donate" and "Pay with Venmo" buttons, as reported in the GitHub issue with screenshot.
 
 ## Root Cause
 The project was using two different methods to render Venmo buttons:
