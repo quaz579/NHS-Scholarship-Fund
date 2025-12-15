@@ -107,9 +107,26 @@
           return actions.order.capture().then(function(details) {
             // Payment successful - redirect to thank you page
             const state = window.NHSDonation ? window.NHSDonation.getState() : {};
+            
+            // Determine which payment method was used (PayPal, Venmo, etc.)
+            let paymentMethod = 'PayPal';
+            if (details.payment_source) {
+              // The payment_source object contains the funding source that was used
+              const fundingSource = Object.keys(details.payment_source)[0];
+              if (fundingSource === 'venmo') {
+                paymentMethod = 'Venmo';
+              } else if (fundingSource === 'paypal') {
+                paymentMethod = 'PayPal';
+              } else if (fundingSource === 'card') {
+                paymentMethod = 'Debit or Credit Card';
+              } else if (fundingSource === 'paylater') {
+                paymentMethod = 'Pay Later';
+              }
+            }
+            
             const params = new URLSearchParams();
             params.set('amount', state.amount || 0);
-            params.set('method', 'PayPal');
+            params.set('method', paymentMethod);
             params.set('transaction', data.orderID);
             if (state.scholarshipName) {
               params.set('scholarship', state.scholarshipName);

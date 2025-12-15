@@ -3,6 +3,31 @@
  * See VENMO_INTEGRATION.md for full documentation
  *
  * ============================================================
+ * NOTE: This file is kept for documentation purposes only.
+ * ============================================================
+ * 
+ * As of the fix for the Venmo button duplication issue, Venmo
+ * is now handled automatically by the PayPal SDK. When the PayPal
+ * SDK is loaded with the 'enable-funding=venmo' parameter, it
+ * automatically renders ALL enabled funding sources in a single
+ * container, including:
+ * - PayPal
+ * - Venmo
+ * - Pay Later
+ * - Debit or Credit Card
+ * 
+ * Previously, this file was used to render a separate Venmo button,
+ * which caused duplicate Venmo buttons to appear (one from PayPal SDK
+ * and one from this file).
+ * 
+ * The PayPal button handler in paypal.js now detects which payment
+ * method was used (PayPal, Venmo, etc.) and reports it correctly
+ * to the thank you page.
+ * 
+ * This file is retained for historical reference and may be useful
+ * if a separate Venmo button is needed in the future.
+ *
+ * ============================================================
  * VENMO USES THE PAYPAL SDK
  * ============================================================
  *
