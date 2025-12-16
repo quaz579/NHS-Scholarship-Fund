@@ -4,6 +4,11 @@
  * Tests for the payment method detection logic in paypal.js
  * These tests verify that the payment source mapping works correctly
  * for all supported funding sources.
+ * 
+ * NOTE: This test currently duplicates the logic from paypal.js to avoid
+ * complexity in extracting the function. Future improvement: refactor the
+ * payment detection logic in paypal.js into a shared utility module that
+ * can be imported and tested directly.
  */
 
 /**
