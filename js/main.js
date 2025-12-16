@@ -44,42 +44,35 @@
   }
 
   /**
-   * Initialize PayPal and Venmo buttons automatically on page load
-   * Both use the PayPal SDK - Venmo is rendered separately with fundingSource parameter
+   * Initialize PayPal buttons automatically on page load
+   * The PayPal SDK with 'enable-funding=venmo' automatically renders ALL enabled
+   * funding sources (PayPal, Venmo, Pay Later, Cards) in a single container.
+   * No need to initialize Venmo separately - it's included automatically.
    */
   function initializePaymentButtons() {
     const paypalContainerId = 'paypal-button-container';
-    const venmoContainerId = 'venmo-button-container';
     const paypalContainer = document.getElementById(paypalContainerId);
-    const venmoContainer = document.getElementById(venmoContainerId);
 
-    if (!paypalContainer || !venmoContainer) {
-      if (!paypalContainer) {
-        console.warn('PayPal button container not found: ' + paypalContainerId);
-      }
-      if (!venmoContainer) {
-        console.warn('Venmo button container not found: ' + venmoContainerId);
-      }
+    if (!paypalContainer) {
+      console.warn('PayPal button container not found: ' + paypalContainerId);
       return;
     }
 
-    // Initialize PayPal and Venmo buttons
-    // Both need the PayPal SDK to be loaded first
-    if (window.NHSPayPal && window.NHSVenmo) {
+    // Initialize PayPal buttons (includes Venmo, Pay Later, and Cards)
+    // PayPal SDK needs to be loaded first
+    if (window.NHSPayPal) {
       window.NHSPayPal.init(paypalContainerId);
-      window.NHSVenmo.init(venmoContainerId);
     } else {
       // PayPal SDK may not be loaded yet, retry up to 20 times every 250ms (5 seconds total)
-      var retries = 0;
-      var maxRetries = 20;
-      var interval = setInterval(function() {
-        if (window.NHSPayPal && window.NHSVenmo) {
+      let retries = 0;
+      const maxRetries = 20;
+      const interval = setInterval(function() {
+        if (window.NHSPayPal) {
           window.NHSPayPal.init(paypalContainerId);
-          window.NHSVenmo.init(venmoContainerId);
           clearInterval(interval);
         } else if (++retries >= maxRetries) {
           clearInterval(interval);
-          console.error('Payment SDKs failed to load after ' + maxRetries + ' retries');
+          console.error('PayPal SDK failed to load after ' + maxRetries + ' retries');
         }
       }, 250);
     }

@@ -158,10 +158,9 @@
                   <h3>Complete Your Donation</h3>
                   <p class="text-muted small mb-3">Choose PayPal or Venmo to complete your donation securely.</p>
 
-                  <!-- Payment Container (PayPal SDK renders both PayPal and Venmo buttons) -->
+                  <!-- Payment Container (PayPal SDK renders all payment buttons) -->
                   <div id="payment-container" class="payment-container">
                     <div id="paypal-button-container" class="payment-button-wrapper"></div>
-                    <div id="venmo-button-container" class="payment-button-wrapper mt-2"></div>
                   </div>
                 </div>
               </form>
@@ -259,7 +258,7 @@
   <!-- Payment Integration Scripts -->
   <script src="js/payments/payment-utils.js"></script>
   <script src="js/payments/paypal.js"></script>
-  <script src="js/payments/venmo.js"></script>
+  <!-- Venmo is included automatically by PayPal SDK with 'enable-funding=venmo' parameter -->
   <!-- Google Pay and Apple Pay scripts - disabled for now
   <script src="js/payments/googlepay.js"></script>
   <script src="js/payments/applepay.js"></script>
