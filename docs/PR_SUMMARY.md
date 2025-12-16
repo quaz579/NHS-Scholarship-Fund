@@ -4,7 +4,7 @@
 This PR fixes the issue where Venmo payment buttons were appearing twice on Safari, showing both "Venmo Donate" and "Pay with Venmo" buttons.
 
 ## Problem Statement
-From the GitHub issue #[number]:
+From the GitHub issue #8:
 - Venmo button appeared twice on Safari on iPhone
 - User reported seeing duplicate Venmo buttons in different forms
 - Screenshot showed "Venmo Donate" button and "Pay with Venmo" button

@@ -64,9 +64,9 @@
       window.NHSPayPal.init(paypalContainerId);
     } else {
       // PayPal SDK may not be loaded yet, retry up to 20 times every 250ms (5 seconds total)
-      var retries = 0;
-      var maxRetries = 20;
-      var interval = setInterval(function() {
+      let retries = 0;
+      const maxRetries = 20;
+      const interval = setInterval(function() {
         if (window.NHSPayPal) {
           window.NHSPayPal.init(paypalContainerId);
           clearInterval(interval);
